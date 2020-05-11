@@ -1,6 +1,8 @@
 package com.example.futapp.ClasesPojos;
 
-public class Arbitro {
+import java.io.Serializable;
+
+public class Arbitro implements Serializable {
     int id;
     String dni;
     String pass;

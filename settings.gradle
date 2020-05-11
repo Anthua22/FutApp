@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':commons-codec-1.14'
 rootProject.name='FutApp'
