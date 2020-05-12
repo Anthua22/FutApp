@@ -9,4 +9,8 @@
         android:id="@+id/arbirtros"
         android:text="Hola"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
 </LinearLayout>
