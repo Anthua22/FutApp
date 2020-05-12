@@ -2,7 +2,7 @@ package com.example.futapp.ClasesPojos;
 
 import java.io.Serializable;
 
-public class Partido implements Serializable {
+public class Partidos implements Serializable {
 
     int idPartido;
     int jornada;
@@ -21,10 +21,10 @@ public class Partido implements Serializable {
     String resultado;
     String acta;
 
-    public Partido() {
+    public Partidos() {
     }
 
-    public Partido(int idPartido, int jornada, int equipoLocal, int equipoVisitante, String provincia, String localidad, String categoria, int arbitroprincipal, String direccion_encuentro, String fecha_encuentro) {
+    public Partidos(int idPartido, int jornada, int equipoLocal, int equipoVisitante, String provincia, String localidad, String categoria, int arbitroprincipal, String direccion_encuentro, String fecha_encuentro) {
         this.idPartido = idPartido;
         this.jornada = jornada;
         EquipoLocal = equipoLocal;

@@ -2,11 +2,13 @@ package com.example.futapp.ClasesPojos;
 
 import java.io.Serializable;
 
-public class Arbitro implements Serializable {
-    int id;
+public class Arbitros implements Serializable {
+    String id;
     String dni;
     String pass;
     String nombre_completo;
+    String foto;
+    String email;
     String fecha_nacimiento;
     String provincia;
     String localidad;
@@ -14,19 +16,21 @@ public class Arbitro implements Serializable {
     String categoria;
     String telefono;
 
-    public Arbitro() {
+    public Arbitros() {
     }
 
-    public Arbitro(String dni, String pass) {
+    public Arbitros(String dni, String pass) {
         this.dni = dni;
         this.pass = pass;
     }
 
-    public Arbitro(int id, String dni, String pass, String nombre_completo, String fecha_nacimiento, String provincia, String localidad, String cp, String categoria, String telefono) {
+    public Arbitros(String id, String dni, String pass, String nombre_completo, String foto, String email, String fecha_nacimiento, String provincia, String localidad, String cp, String categoria, String telefono) {
         this.id = id;
         this.dni = dni;
         this.pass = pass;
         this.nombre_completo = nombre_completo;
+        this.foto = foto;
+        this.email = email;
         this.fecha_nacimiento = fecha_nacimiento;
         this.provincia = provincia;
         this.localidad = localidad;
@@ -35,11 +39,11 @@ public class Arbitro implements Serializable {
         this.telefono = telefono;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -113,6 +117,22 @@ public class Arbitro implements Serializable {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

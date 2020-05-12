@@ -14,25 +14,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.futapp.ClasesPojos.Arbitro;
+import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.R;
 
-import com.example.futapp.Servicios.CrearServicio;
-import com.example.futapp.Servicios.ServicioApiRest;
+import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginFragment extends Fragment {
 
@@ -40,20 +36,23 @@ public class LoginFragment extends Fragment {
     Button entrar;
     TextInputLayout usuario;
     TextInputLayout contraseña;
-    ServicioApiRest servicioApiRest;
-    Arbitro arbitroIniciar;
+
+    Arbitros arbitrosIniciar;
+    List<Arbitros> arbitros;
+    ServicioApiRestUtilidades servicioApiRestUtilidades;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login, container,false);
         asignarID(view);
-
+        arbitros = new ArrayList<>();
+        arbitrosIniciar = new Arbitros();
+        servicioApiRestUtilidades = new ServicioApiRestUtilidades();
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 comprobarUsuario();
-                Inicio();
             }
         });
         return view;
@@ -66,35 +65,40 @@ public class LoginFragment extends Fragment {
         FragmentManager FM = getFragmentManager();
         FragmentTransaction FT= FM.beginTransaction();
 
-        Fragment fragment = new InicioFragment();
-        FT.add(R.id.principal, fragment);
+        Fragment fragment = new InicioFragment(arbitros);
+        FT.replace(R.id.principal, fragment);
         FT.commit();
     }
 
 
     private void comprobarUsuario(){
-        arbitroIniciar = new Arbitro(usuario.getEditText().getText().toString().toUpperCase(),contraseña.getEditText().getText().toString());
-        servicioApiRest = CrearServicio.crearServicioArbitros();
-        Map<String, String> map = new HashMap<>();
-        map.put("dni",arbitroIniciar.getDni());
-        map.put("pass",Encriptar());
-        Call<Arbitro> responseCall = servicioApiRest.getArbitro(map);
-        responseCall.enqueue(new Callback<Arbitro>() {
+        arbitrosIniciar = new Arbitros(usuario.getEditText().getText().toString().toUpperCase(),Encriptar());
+        Call<List<Arbitros>> respose = servicioApiRestUtilidades.servicioApiRest.getArbitros();
+        respose.enqueue(new Callback<List<Arbitros>>() {
             @Override
-            public void onResponse(Call<Arbitro> call, Response<Arbitro> response) {
-                if(response.body()!=null){
-                    arbitroIniciar = response.body();
-                }else{
-                    Toast.makeText(getActivity(),"Error: "+response.message(),Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<List<Arbitros>> call, Response<List<Arbitros>> response) {
+                if(response.isSuccessful()){
+                    List<Arbitros> arbi = response.body();
+
+                    for(Arbitros x : arbi){
+                        if(arbitrosIniciar.getDni().equals(x.getDni()) && arbitrosIniciar.getPass().equals(x.getPass())){
+                            arbitrosIniciar = x;
+                        }
+                    }
+
+                    if(!arbitrosIniciar.getNombre_completo().isEmpty() || arbitrosIniciar.getNombre_completo()!=null){
+                        Inicio();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<Arbitro> call, Throwable t) {
-                Log.e("Error", t.toString());
-                Toast.makeText(getActivity(), "Error" + t.toString(), Toast.LENGTH_LONG).show();
+            public void onFailure(Call<List<Arbitros>> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG);
             }
         });
+
+
 
 
     }
@@ -102,7 +106,7 @@ public class LoginFragment extends Fragment {
 
     private String Encriptar(){
 
-        String passencriptada = DigestUtils.sha1Hex(arbitroIniciar.getPass());
+        String passencriptada = DigestUtils.sha1Hex(contraseña.getEditText().getText().toString());
         return  passencriptada;
     }
 

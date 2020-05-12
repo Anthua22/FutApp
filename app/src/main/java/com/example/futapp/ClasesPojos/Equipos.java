@@ -2,7 +2,7 @@ package com.example.futapp.ClasesPojos;
 
 import java.io.Serializable;
 
-public class Equipo implements Serializable {
+public class Equipos implements Serializable {
 
     int idEquipo;
     String nombre;
@@ -13,7 +13,7 @@ public class Equipo implements Serializable {
     String localidad;
     String direccion_campo;
 
-    public Equipo(int idEquipo, String nombre, String foto, String categoria, String provincia, String correo, String localidad, String direccion_campo) {
+    public Equipos(int idEquipo, String nombre, String foto, String categoria, String provincia, String correo, String localidad, String direccion_campo) {
         this.idEquipo = idEquipo;
         this.nombre = nombre;
         this.foto = foto;
