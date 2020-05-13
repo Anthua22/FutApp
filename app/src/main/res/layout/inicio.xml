@@ -1,16 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout_inicio"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/arbirtros"
-        android:text="Hola"/>
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:gravity="center_horizontal">
+
+        <android.widget.Toolbar
+            android:id="@+id/toolbar_inicio"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#FB5725"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <!--<LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:background="@color/cardview_shadow_start_color">
+
+        </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>-->
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"/>
-</LinearLayout>
+        android:id="@+id/navView"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header_layout_inicio"
+        app:menu="@menu/menu_drawer_inicio"
+        >
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -65,7 +65,7 @@ public class LoginFragment extends Fragment {
         FragmentManager FM = getFragmentManager();
         FragmentTransaction FT= FM.beginTransaction();
 
-        Fragment fragment = new InicioFragment(arbitros);
+        Fragment fragment = new InicioFragment();
         FT.replace(R.id.principal, fragment);
         FT.commit();
     }
@@ -86,14 +86,18 @@ public class LoginFragment extends Fragment {
                         }
                     }
 
-                    if(!arbitrosIniciar.getNombre_completo().isEmpty() || arbitrosIniciar.getNombre_completo()!=null){
+                    if(!arbitrosIniciar.getId().isEmpty() || arbitrosIniciar.getId()!=null){
                         Inicio();
                     }
+                }else{
+                    Log.e("Error", response.message());
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_LONG);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Arbitros>> call, Throwable t) {
+                Log.e("Error", t.toString());
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG);
             }
         });
@@ -102,7 +106,6 @@ public class LoginFragment extends Fragment {
 
 
     }
-
 
     private String Encriptar(){
 
