@@ -16,20 +16,19 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.futapp.ClasesPojos.Arbitros;
+import com.example.futapp.Adaptadores.PagerAdapterInicio;
 import com.example.futapp.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class InicioFragment extends Fragment {
 
-    TextView arbitros;
     DrawerLayout drawerLayout;
-
-
+    ActionBar actionBar;
+    TabLayout tabLayout;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class InicioFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar_inicio);
         drawerLayout = view.findViewById(R.id.drawer_layout_inicio);
         getActivity().setActionBar(toolbar);
-        ActionBar actionBar = getActivity().getActionBar();
+        actionBar = getActivity().getActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
         actionBar.setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = view.findViewById(R.id.navView);
@@ -51,31 +50,24 @@ public class InicioFragment extends Fragment {
             }
         });
 
+        tabLayout =view.findViewById(R.id.tablayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Nuevos"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pasados"));
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        PagerAdapterInicio pagerAdapterInicio = new PagerAdapterInicio(getFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapterInicio);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         return  view;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id){
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    //  @Override
-   /* public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                drawerLayout.openDrawer(;
-                return true;
-            case R.id.action
+                drawerLayout.openDrawer(GravityCompat.START);
 
         }
+
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }

@@ -9,33 +9,43 @@
     android:layout_height="match_parent">
 
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:id="@+id/coordinator">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:gravity="center_horizontal">
 
         <android.widget.Toolbar
             android:id="@+id/toolbar_inicio"
+            android:title="Designaciones"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#FB5725"/>
-    </com.google.android.material.appbar.AppBarLayout>
 
-
-
-    <!--<LinearLayout android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            android:background="@color/cardview_shadow_start_color">
+            android:layout_height="wrap_content"
+            android:id="@+id/tablayout"
+            android:background="#FB5725"
+            app:tabGravity="fill"
+            app:layout_behavior = "@string/appbar_scrolling_view_behavior">
+        </com.google.android.material.tabs.TabLayout>
 
-        </androidx.appcompat.widget.Toolbar>
-    </LinearLayout>-->
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewpager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 
     <com.google.android.material.navigation.NavigationView
@@ -48,9 +58,6 @@
         >
 
     </com.google.android.material.navigation.NavigationView>
-
-
-
 
 
 

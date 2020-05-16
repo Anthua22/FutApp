@@ -21,13 +21,17 @@ public interface ServicioApiRest {
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<List<Arbitros>> getArbitros();
 
+    @GET("Arbitros/{id}")
+    @Headers({"Accept: application/json","Content-Type: application/json"})
+    Call<List<Arbitros>> getArbitro(@Path("id") int id);
+
     @GET("Equipos")
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<List<Equipos>> getEquipos();
 
     @GET("Partidos")
     @Headers({"Accept: application/json","Content-Type: application/json"})
-    Call<List<Partidos>> getPartios();
+    Call<List<Partidos>> getPartidos();
 
     @PUT("Partidos/{idPartido}")
     @Headers({"Accept: application/json","Content-Type: application/json"})

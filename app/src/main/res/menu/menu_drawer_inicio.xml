@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigationinicioConfigurarCuenta"
-            android:icon="@drawable/settings"
+            android:icon="@drawable/ic_person"
             android:title="Configurar Cuenta"/>
 
         <item

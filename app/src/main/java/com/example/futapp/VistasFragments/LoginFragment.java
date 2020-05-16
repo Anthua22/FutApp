@@ -70,9 +70,10 @@ public class LoginFragment extends Fragment {
         FT.commit();
     }
 
-
     private void comprobarUsuario(){
         arbitrosIniciar = new Arbitros(usuario.getEditText().getText().toString().toUpperCase(),Encriptar());
+
+
         Call<List<Arbitros>> respose = servicioApiRestUtilidades.servicioApiRest.getArbitros();
         respose.enqueue(new Callback<List<Arbitros>>() {
             @Override
