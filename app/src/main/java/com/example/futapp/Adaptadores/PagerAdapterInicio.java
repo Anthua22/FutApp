@@ -4,15 +4,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.VistasFragments.PartidosNuevosTabFragment;
 
 public class PagerAdapterInicio extends FragmentStatePagerAdapter {
 
     int numeroPesatañas;
+    Arbitros actual;
 
-    public PagerAdapterInicio(FragmentManager fm, int numeroPesatañas) {
+    public PagerAdapterInicio(FragmentManager fm, int numeroPesatañas, Arbitros actual) {
         super(fm);
         this.numeroPesatañas = numeroPesatañas;
+        this.actual = actual;
     }
 
     @Override
@@ -20,11 +23,11 @@ public class PagerAdapterInicio extends FragmentStatePagerAdapter {
 
         switch (position){
             case 0:
-                PartidosNuevosTabFragment partidosNuevosTabFragment = new PartidosNuevosTabFragment();
+                PartidosNuevosTabFragment partidosNuevosTabFragment = new PartidosNuevosTabFragment(actual);
                 return  partidosNuevosTabFragment;
 
             case 1:
-                PartidosNuevosTabFragment partidosNuevosTabFragment1 = new PartidosNuevosTabFragment();
+                PartidosNuevosTabFragment partidosNuevosTabFragment1 = new PartidosNuevosTabFragment(actual);
                 return  partidosNuevosTabFragment1;
         }
         return null;

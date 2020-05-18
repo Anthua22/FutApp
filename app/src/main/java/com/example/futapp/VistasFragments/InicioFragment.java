@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.futapp.Adaptadores.PagerAdapterInicio;
+import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -29,6 +30,12 @@ public class InicioFragment extends Fragment {
     DrawerLayout drawerLayout;
     ActionBar actionBar;
     TabLayout tabLayout;
+    Arbitros arbitrosactual;
+
+    public InicioFragment(Arbitros arbitrosactual) {
+        this.arbitrosactual = arbitrosactual;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,7 +61,7 @@ public class InicioFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Nuevos"));
         tabLayout.addTab(tabLayout.newTab().setText("Pasados"));
         ViewPager viewPager = view.findViewById(R.id.viewpager);
-        PagerAdapterInicio pagerAdapterInicio = new PagerAdapterInicio(getFragmentManager(), tabLayout.getTabCount());
+        PagerAdapterInicio pagerAdapterInicio = new PagerAdapterInicio(getFragmentManager(), tabLayout.getTabCount(),arbitrosactual);
         viewPager.setAdapter(pagerAdapterInicio);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         return  view;

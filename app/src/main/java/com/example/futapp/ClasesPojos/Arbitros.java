@@ -3,7 +3,7 @@ package com.example.futapp.ClasesPojos;
 import java.io.Serializable;
 
 public class Arbitros implements Serializable {
-    String id;
+    int id;
     String dni;
     String pass;
     String nombre_completo;
@@ -24,7 +24,7 @@ public class Arbitros implements Serializable {
         this.pass = pass;
     }
 
-    public Arbitros(String id, String dni, String pass, String nombre_completo, String foto, String email, String fecha_nacimiento, String provincia, String localidad, String cp, String categoria, String telefono) {
+    public Arbitros(int id, String dni, String pass, String nombre_completo, String foto, String email, String fecha_nacimiento, String provincia, String localidad, String cp, String categoria, String telefono) {
         this.id = id;
         this.dni = dni;
         this.pass = pass;
@@ -39,11 +39,11 @@ public class Arbitros implements Serializable {
         this.telefono = telefono;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

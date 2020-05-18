@@ -65,7 +65,7 @@ public class LoginFragment extends Fragment {
         FragmentManager FM = getFragmentManager();
         FragmentTransaction FT= FM.beginTransaction();
 
-        Fragment fragment = new InicioFragment();
+        Fragment fragment = new InicioFragment(arbitrosIniciar);
         FT.replace(R.id.principal, fragment);
         FT.commit();
     }
@@ -87,7 +87,7 @@ public class LoginFragment extends Fragment {
                         }
                     }
 
-                    if(!arbitrosIniciar.getId().isEmpty() || arbitrosIniciar.getId()!=null){
+                    if(arbitrosIniciar.getId()!=0){
                         Inicio();
                     }
                 }else{
