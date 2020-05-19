@@ -61,12 +61,21 @@ public class HolderPartidos extends RecyclerView.ViewHolder {
                     for(Equipos x : response.body()){
                         if(x.getIdEquipo() == partido.getEquipoLocal()){
                             equipolocal.setText(x.getNombre());
-                            Glide.with(context).load(x.getFoto())
-                                    .into(equipolocalfoto);
+                            if(!x.getFoto().equals("/Assets/equipodefecto.png")){
+                                Glide.with(context).load(x.getFoto())
+                                        .into(equipolocalfoto);
+                            }else{
+                                equipolocalfoto.setImageResource(R.drawable.equipodefecto);
+                            }
+
                         }else if(x.getIdEquipo() == partido.getEquipoVisitante()){
                             equipovisitante.setText(x.getNombre());
-                            Glide.with(context).load(x.getFoto())
-                                    .into(equipovisitantefoto);
+                            if(!x.getFoto().equals("/Assets/equipodefecto.png")){
+                                Glide.with(context).load(x.getFoto())
+                                        .into(equipovisitantefoto);
+                            }else{
+                                equipovisitantefoto.setImageResource(R.drawable.equipodefecto);
+                            }
                         }
                     }
                 }

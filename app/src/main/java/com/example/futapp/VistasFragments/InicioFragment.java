@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -16,8 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.futapp.Adaptadores.PagerAdapterInicio;
 import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.R;
@@ -31,6 +35,10 @@ public class InicioFragment extends Fragment {
     ActionBar actionBar;
     TabLayout tabLayout;
     Arbitros arbitrosactual;
+    TextView categoria, nombre;
+    ImageView fotoarbitro;
+
+
 
     public InicioFragment(Arbitros arbitrosactual) {
         this.arbitrosactual = arbitrosactual;
@@ -43,20 +51,38 @@ public class InicioFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar_inicio);
         drawerLayout = view.findViewById(R.id.drawer_layout_inicio);
         getActivity().setActionBar(toolbar);
+
         actionBar = getActivity().getActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
+
         NavigationView navigationView = view.findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 menuItem.setChecked(true);
-                drawerLayout.closeDrawers();
-                Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                switch (menuItem.getItemId()){
+                    case R.id.cerrarSesion:
+                        FragmentManager FM = getFragmentManager();
+                        FragmentTransaction FT= FM.beginTransaction();
+
+                        Fragment fragment = new LoginFragment();
+                        FT.replace(R.id.principal, fragment);
+                        FT.commit();
+                        break;
+                    case R.id.navigationinicioConfigurarCuenta:
+                        Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        break;
+                }
+
+
                 return  true;
             }
         });
-
+        View viewheader = navigationView.getHeaderView(0);
+        colocarDatosHeader(viewheader);
         tabLayout =view.findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Nuevos"));
         tabLayout.addTab(tabLayout.newTab().setText("Pasados"));
@@ -64,6 +90,9 @@ public class InicioFragment extends Fragment {
         PagerAdapterInicio pagerAdapterInicio = new PagerAdapterInicio(getFragmentManager(), tabLayout.getTabCount(),arbitrosactual);
         viewPager.setAdapter(pagerAdapterInicio);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+
         return  view;
     }
 
@@ -76,5 +105,23 @@ public class InicioFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+     private void colocarDatosHeader(View viewheader){
+
+        nombre = viewheader.findViewById(R.id.nombreArbitro);
+        categoria  = viewheader.findViewById(R.id.categoria);
+        fotoarbitro = viewheader.findViewById(R.id.fotoArbitro);
+
+        nombre.setText(arbitrosactual.getNombre_completo());
+        categoria.setText(arbitrosactual.getCategoria());
+
+        if(!arbitrosactual.getFoto().equals("/Assets/defecto.jpg")){
+            Glide.with(getActivity()).load(arbitrosactual.getFoto())
+                    .into(fotoarbitro);
+        }else{
+            fotoarbitro.setImageResource(R.drawable.defecto);
+        }
+
     }
 }

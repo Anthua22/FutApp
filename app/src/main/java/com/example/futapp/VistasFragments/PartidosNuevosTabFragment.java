@@ -61,7 +61,7 @@ public class PartidosNuevosTabFragment extends Fragment {
             public void onResponse(Call<List<Partidos>> call, Response<List<Partidos>> response) {
                 if(response.isSuccessful()){
                     for(Partidos x : response.body()){
-                        if(x.getArbitroprincipal() == actual.getId() || x.getArbitrosecundario() == actual.getId() || x.getCronometrador() == actual.getId() || x.getTercer_arbitro() == actual.getId())
+                        if(x.getArbitroprincipal() == actual.getId() || x.getArbitrosecundario() == actual.getId() || x.getCronometrador() == actual.getId() || x.getTercer_arbitro() == actual.getId() && x.getDisputado() ==0)
                         {
                             partidos.add(x);
                             adaptadorPartidosNuevos.notifyDataSetChanged();
