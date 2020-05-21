@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/configurarcuenta"
+            android:icon="@drawable/ic_person"
+            android:title="Configurar Cuenta"/>
+
+        <item
+            android:id="@+id/cerrarSesion_partido"
+            android:icon="@drawable/log_logout_door"
+            android:title="Cerrar Sesión"
+            />
+    </group>
+
+    <item android:title="Opciones Partido">
+        <menu>
+            <item android:title="Resultado" android:id="@+id/resulado"/>
+            <item android:title="Jugadores" android:id="@+id/jugadores"/>
+            <item android:title="Staff" android:id="@+id/staff"/>
+            <item android:title="Incidencias" android:id="@+id/incidencias"/>
+        </menu>
+    </item>
+</menu>

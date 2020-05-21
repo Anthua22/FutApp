@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment {
         FragmentTransaction FT= FM.beginTransaction();
 
         Fragment fragment = new InicioFragment(arbitrosIniciar);
-        FT.replace(R.id.principal, fragment);
+        FT.replace(R.id.principal,fragment, "fragmentinicio");
         FT.commit();
     }
 
@@ -89,6 +89,8 @@ public class LoginFragment extends Fragment {
 
                     if(arbitrosIniciar.getId()!=0){
                         Inicio();
+                    }else{
+                        Toast.makeText(getActivity(), "Usuario o contraseña incorrectos...",Toast.LENGTH_LONG).show();
                     }
                 }else{
                     Log.e("Error", response.message());

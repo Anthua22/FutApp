@@ -14,10 +14,11 @@ import com.example.futapp.R;
 
 import java.util.List;
 
-public class AdaptadorPartidosNuevos extends RecyclerView.Adapter {
+public class AdaptadorPartidosNuevos extends RecyclerView.Adapter implements View.OnClickListener {
     List<Partidos> partidosArrayList;
     Context context;
     HolderPartidos holderPartidos;
+    View.OnClickListener listener;
 
     public AdaptadorPartidosNuevos(List<Partidos> partidos, Context context){
         partidosArrayList = partidos;
@@ -28,6 +29,7 @@ public class AdaptadorPartidosNuevos extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.partidos, parent,false);
+        v.setOnClickListener(this);
         holderPartidos = new HolderPartidos(v, context);
         return holderPartidos;
     }
@@ -43,5 +45,14 @@ public class AdaptadorPartidosNuevos extends RecyclerView.Adapter {
         return partidosArrayList.size();
     }
 
+    public void setClickListener(View.OnClickListener listener){
+        if(listener != null) this.listener = listener;
 
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if(listener!=null) listener.onClick(v);
+    }
 }

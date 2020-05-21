@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +48,21 @@ public class PartidosNuevosTabFragment extends Fragment {
         servicioApiRestUtilidades = new ServicioApiRestUtilidades();
         recyclerView = view.findViewById(R.id.recycler_partidos_nuevos);
         adaptadorPartidosNuevos = new AdaptadorPartidosNuevos(partidos, getActivity());
+        adaptadorPartidosNuevos.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager FM = getFragmentManager();
+
+                FragmentTransaction FT= FM.beginTransaction();
+                int posicion = recyclerView.getChildAdapterPosition(v);
+
+
+                PartidoFragment partidoFragment = new PartidoFragment(partidos.get(posicion));
+                FT.replace(R.id.principal, partidoFragment);
+                FT.commit();
+
+            }
+        });
         recyclerView.setAdapter(adaptadorPartidosNuevos);
         obtenerPartidos();
         recyclerView.setHasFixedSize(true);
@@ -78,6 +95,8 @@ public class PartidosNuevosTabFragment extends Fragment {
         });
 
     }
+
+
 
 
 }

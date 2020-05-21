@@ -2,7 +2,6 @@ package com.example.futapp.VistasFragments;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,17 +62,25 @@ public class InicioFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 menuItem.setChecked(true);
+                FragmentManager FM ;
+                FragmentTransaction FT;
                 switch (menuItem.getItemId()){
                     case R.id.cerrarSesion:
-                        FragmentManager FM = getFragmentManager();
-                        FragmentTransaction FT= FM.beginTransaction();
+                        FM = getFragmentManager();
+                        FT= FM.beginTransaction();
 
                         Fragment fragment = new LoginFragment();
                         FT.replace(R.id.principal, fragment);
                         FT.commit();
                         break;
                     case R.id.navigationinicioConfigurarCuenta:
-                        Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        FM = getFragmentManager();
+                        FT= FM.beginTransaction();
+
+                        /*PartidoFragment partidoFragment = new PartidoFragment();
+                        FT.replace(R.id.principal, partidoFragment);
+                        FT.commit();*/
+                        Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                         break;
                 }
 
