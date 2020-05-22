@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -32,7 +33,7 @@ public class ResultadoPartidoFragment extends Fragment {
     Partidos partidos;
     TextView nombrelocal, nombrevisitante;
     ImageView local, visitante;
-    EditText golvisitante, gollocal;
+    EditText golvisitante, gollocal, motivosuspension;
     Switch suspendido;
     Button enviar;
 
@@ -46,6 +47,7 @@ public class ResultadoPartidoFragment extends Fragment {
         View view = inflater.inflate(R.layout.resultado_partido,container,false);
         asignarID(view);
         ponerValores();
+        agregarEventoSwitch();
         return  view;
     }
 
@@ -58,8 +60,10 @@ public class ResultadoPartidoFragment extends Fragment {
         golvisitante = view.findViewById(R.id.golesvisitantes);
         suspendido = view.findViewById(R.id.suspendido);
         enviar = view.findViewById(R.id.confirmarresultado);
+        motivosuspension = view.findViewById(R.id.motivosuspension);
 
     }
+
 
     void ponerValores(){
         ServicioApiRestUtilidades servicioApiRestUtilidades = new ServicioApiRestUtilidades();
@@ -94,6 +98,19 @@ public class ResultadoPartidoFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Equipos>> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void agregarEventoSwitch(){
+        suspendido.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    motivosuspension.setVisibility(View.VISIBLE);
+                }else{
+                    motivosuspension.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }

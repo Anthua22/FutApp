@@ -4,10 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESULTADO"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="14dp"
+        android:textColor="#FFF"
+        android:background="#369F01"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:gravity="center"
+        android:layout_margin="25dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -17,14 +27,17 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/localfo"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/localnombre"/>
+                android:id="@+id/localnombre"
+                android:textStyle="bold"/>
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:id="@+id/goleslocal"
                 android:inputType="number"/>
 
@@ -34,10 +47,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=":"
-            android:layout_marginTop="80dp"
             android:layout_marginLeft="20dp"
-            android:textSize="18dp"/>
+            android:layout_marginTop="40dp"
+            android:text=":"
+            android:textSize="18dp" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,15 +59,18 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/visitantefoto"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/visistantenombre"/>
+                android:id="@+id/visistantenombre"
+                android:textStyle="bold"/>
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:layout_gravity="center"
                 android:id="@+id/golesvisitantes"/>
         </LinearLayout>
 
@@ -62,15 +78,16 @@
 
     </LinearLayout>
    <LinearLayout
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-       android:layout_margin="20dp">
+       android:gravity="center"
+       android:layout_margin="25dp">
 
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Suspención?"
+           android:text="Suspensión?"
            />
        <Switch
            android:layout_width="wrap_content"
@@ -79,16 +96,21 @@
            android:id="@+id/suspendido"/>
    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:hint="Escriba el motivo de la suspensión"
+        android:visibility="invisible"
+        android:id="@+id/motivosuspension"/>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="70dp"
         android:text="Confirmar Resultado"
+        android:layout_gravity="center"
+        android:textColor="#FFF"
         android:background="#369F01"
         android:id="@+id/confirmarresultado"/>
 
