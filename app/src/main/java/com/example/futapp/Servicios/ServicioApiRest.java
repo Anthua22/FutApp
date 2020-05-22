@@ -1,8 +1,11 @@
 package com.example.futapp.Servicios;
 
+import android.os.StatFs;
+
 import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.ClasesPojos.Equipos;
 import com.example.futapp.ClasesPojos.Partidos;
+import com.example.futapp.ClasesPojos.Staffs;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +31,10 @@ public interface ServicioApiRest {
     @GET("Equipos")
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<List<Equipos>> getEquipos();
+
+    @GET("Staffs")
+    @Headers({"Accept: application/json","Content-Type: application/json"})
+    Call<List<Staffs>> getStaffs();
 
     @GET("Partidos")
     @Headers({"Accept: application/json","Content-Type: application/json"})

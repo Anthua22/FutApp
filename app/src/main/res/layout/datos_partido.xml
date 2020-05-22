@@ -14,14 +14,14 @@
             android:text="DATOS BÁSICOS DEL PARTIDO"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="10dp"
+            android:textSize="14dp"
             android:textColor="#FFF"
             android:background="#369F01"/>
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="1"
-            android:layout_margin="20dp"
+            android:layout_margin="5dp"
             >
             <TableRow>
                 <TextView
@@ -30,12 +30,13 @@
                     android:padding="3dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="15dp"
                     android:text="Dirección del encuentro:"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
                     android:id="@+id/direccion"/>
             </TableRow>
 
@@ -45,13 +46,13 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_column="1"
+                    android:textSize="15dp"
                     android:padding="3dp"
                     android:text="Jornada:"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="fffs"
+                    android:textSize="15dp"
                     android:id="@+id/jornada"/>
             </TableRow>
 
@@ -61,12 +62,15 @@
                     android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:textSize="15dp"
                     android:padding="3dp"
                     android:text="Delegado de campo:"/>
-                <TextView
+                <Spinner
+                    android:id="@+id/delegados"
                     android:layout_width="wrap_content"
+                    android:textSize="15dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/delegado_campo"/>
+                    />
             </TableRow>
 
             <TableRow>
@@ -74,12 +78,14 @@
                     android:layout_width="wrap_content"
                     android:textStyle="bold"
                     android:layout_height="wrap_content"
+                    android:textSize="15dp"
                     android:layout_column="1"
                     android:padding="3dp"
                     android:text="Fecha del Encuentro:"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="15dp"
                     android:id="@+id/fecha_partido"/>
             </TableRow>
 
@@ -87,6 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="15dp"
                     android:layout_column="1"
                     android:textStyle="bold"
                     android:padding="3dp"
@@ -94,7 +101,41 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/hora_encuentro"/>
+                    android:id="@+id/hora_encuentro"
+                    android:textSize="15dp"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_column="1"
+                    android:textStyle="bold"
+                    android:padding="3dp"
+                    android:text="Árbitros Principales:"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/arbiprinciapl"
+                    android:textSize="15dp"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/asistentes"
+                android:visibility="invisible">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_column="1"
+                    android:textStyle="bold"
+                    android:padding="3dp"
+                    android:text="Árbitros Asistentes:"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/arbiasistentes"
+                    android:textSize="15dp"/>
             </TableRow>
 
         </TableLayout>
@@ -143,6 +184,7 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
                     android:id="@+id/equipoVisitantefoto"/>
                 <TextView
                     android:layout_width="wrap_content"

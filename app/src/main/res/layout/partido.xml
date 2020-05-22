@@ -17,12 +17,13 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             android:gravity="center_horizontal">
 
             <android.widget.Toolbar
                 android:id="@+id/toolbar_partido"
-                android:title=""
+
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="#FB5725"/>
