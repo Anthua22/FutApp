@@ -2,10 +2,12 @@ package com.example.futapp.Adaptadores;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
+import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 
 public class PagerAdapterPartido extends FragmentStatePagerAdapter {
     int numeroPestaña;
@@ -24,8 +26,8 @@ public class PagerAdapterPartido extends FragmentStatePagerAdapter {
                 DatosBasicosFragment datosBasicosFragment = new DatosBasicosFragment(partidos);
                 return datosBasicosFragment;
             case 1:
-                DatosBasicosFragment datosBasicosFragment1 = new DatosBasicosFragment(partidos);
-                return  datosBasicosFragment1;
+                ResultadoPartidoFragment resultadoPartidoFragment = new ResultadoPartidoFragment(partidos);
+                return  resultadoPartidoFragment;
             case 2:
                 DatosBasicosFragment datosBasicosFragment2 = new DatosBasicosFragment(partidos);
                 return datosBasicosFragment2;

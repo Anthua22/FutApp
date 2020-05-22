@@ -77,6 +77,7 @@ public class Staffs implements Serializable {
                 ", cargo='" + cargo + '\'' +
                 ", fecha_nacimiento='" + fecha_nacimiento + '\'' +
                 ", dni='" + dni + '\'' +
+                ", nombre_completo='" + nombre_completo + '\'' +
                 ", equipo=" + equipo +
                 '}';
     }

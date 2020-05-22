@@ -107,7 +107,7 @@ public class DatosBasicosFragment extends Fragment {
 
                         }else if(partidos.getEquipoVisitante() == x.getIdEquipo()){
                             equipovisitante.setText(x.getNombre());
-                            if(!x.getFoto().equals("/Assets/equipodefecto.png")){
+                            if(!x.getFoto().equals("/Assets/equipodefecto.png") && x.getFoto()!=null){
                                 Glide.with(getActivity()).load(x.getFoto())
                                         .into(equipovisitantefoto);
                             }else{

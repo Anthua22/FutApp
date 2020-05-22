@@ -38,6 +38,7 @@ public class PartidoFragment extends Fragment {
     TabLayout tabLayout;
     Partidos partidoactual;
     Toolbar toolbar;
+    ViewPager viewPager;
     String local, visitante, resultado;
     public PartidoFragment(Partidos partidos){
         partidoactual =partidos;
@@ -73,9 +74,11 @@ public class PartidoFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Staff"));
         tabLayout.addTab(tabLayout.newTab().setText("Incidencias"));
 
-        ViewPager viewPager = view.findViewById(R.id.viewpager_partido);
+        viewPager = view.findViewById(R.id.viewpager_partido);
         PagerAdapterPartido pagerAdapterPartido = new PagerAdapterPartido(getFragmentManager(), tabLayout.getTabCount(),partidoactual);
         viewPager.setAdapter(pagerAdapterPartido);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        cambioTabs();
 
         return view;
     }
@@ -110,4 +113,22 @@ public class PartidoFragment extends Fragment {
     }
 
 
+    void cambioTabs(){
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
 }

@@ -18,15 +18,17 @@ public class Partidos implements Serializable {
     String direccion_encuentro;
     String fecha_encuentro;
     int disputado;
+    int suspendido;
     String resultado;
     String acta;
 
     public Partidos() {
     }
 
-    public Partidos(int idPartido, int jornada, int equipoLocal, int equipoVisitante, String provincia, String localidad, String categoria, int arbitroprincipal, String direccion_encuentro, String fecha_encuentro) {
+    public Partidos(int idPartido, int suspendido, int jornada, int equipoLocal, int equipoVisitante, String provincia, String localidad, String categoria, int arbitroprincipal, String direccion_encuentro, String fecha_encuentro) {
         this.idPartido = idPartido;
         this.jornada = jornada;
+        this.suspendido = suspendido;
         EquipoLocal = equipoLocal;
         EquipoVisitante = equipoVisitante;
         this.provincia = provincia;
@@ -35,6 +37,14 @@ public class Partidos implements Serializable {
         this.arbitroprincipal = arbitroprincipal;
         this.direccion_encuentro = direccion_encuentro;
         this.fecha_encuentro = fecha_encuentro;
+    }
+
+    public int getSuspendido() {
+        return suspendido;
+    }
+
+    public void setSuspendido(int suspendido) {
+        this.suspendido = suspendido;
     }
 
     public int getIdPartido() {
@@ -167,7 +177,7 @@ public class Partidos implements Serializable {
 
     @Override
     public String toString() {
-        return "Partido{" +
+        return "Partidos{" +
                 "idPartido=" + idPartido +
                 ", jornada=" + jornada +
                 ", EquipoLocal=" + EquipoLocal +
@@ -182,6 +192,7 @@ public class Partidos implements Serializable {
                 ", direccion_encuentro='" + direccion_encuentro + '\'' +
                 ", fecha_encuentro='" + fecha_encuentro + '\'' +
                 ", disputado=" + disputado +
+                ", suspendido=" + suspendido +
                 ", resultado='" + resultado + '\'' +
                 ", acta='" + acta + '\'' +
                 '}';
