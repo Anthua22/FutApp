@@ -72,6 +72,7 @@ public class PartidoFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Resultado"));
         tabLayout.addTab(tabLayout.newTab().setText("Jugadores"));
         tabLayout.addTab(tabLayout.newTab().setText("Staff"));
+        tabLayout.addTab(tabLayout.newTab().setText("Faltas/Tiempo"));
         tabLayout.addTab(tabLayout.newTab().setText("Incidencias"));
 
         viewPager = view.findViewById(R.id.viewpager_partido);

@@ -35,7 +35,7 @@
                 android:id="@+id/localnombre"
                 android:textStyle="bold"/>
             <EditText
-                android:layout_width="40dp"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/goleslocal"
@@ -67,7 +67,7 @@
                 android:id="@+id/visistantenombre"
                 android:textStyle="bold"/>
             <EditText
-                android:layout_width="40dp"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:layout_gravity="center"

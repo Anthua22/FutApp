@@ -36,6 +36,8 @@ public class PartidosNuevosTabFragment extends Fragment {
     Arbitros actual;
     ServicioApiRestUtilidades servicioApiRestUtilidades;
 
+
+
     public PartidosNuevosTabFragment(Arbitros actual) {
         this.actual = actual;
     }
