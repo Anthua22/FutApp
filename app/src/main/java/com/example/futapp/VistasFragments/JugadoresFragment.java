@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.futapp.Adaptadores.PagerAdapterJugadores;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;
 import com.google.android.material.tabs.TabLayout;
@@ -31,11 +32,33 @@ public class JugadoresFragment extends Fragment {
         asignarId(view);
         tabLayout.addTab(tabLayout.newTab().setText("Locales"));
         tabLayout.addTab(tabLayout.newTab().setText("Visitantes"));
+        PagerAdapterJugadores pagerAdapterJugadores = new PagerAdapterJugadores(getFragmentManager(),tabLayout.getTabCount(),partidos);
+        viewPager.setAdapter(pagerAdapterJugadores);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        cambioTabs();
         return view;
     }
 
     void asignarId(View view){
         viewPager = view.findViewById(R.id.viewpager_jugadores);
         tabLayout = view.findViewById(R.id.tablayout_jugadores);
+    }
+    void cambioTabs(){
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }

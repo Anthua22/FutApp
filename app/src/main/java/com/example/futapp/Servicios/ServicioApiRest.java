@@ -4,6 +4,7 @@ import android.os.StatFs;
 
 import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.ClasesPojos.Equipos;
+import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.ClasesPojos.Staffs;
 
@@ -24,10 +25,6 @@ public interface ServicioApiRest {
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<List<Arbitros>> getArbitros();
 
-    @GET("Arbitros/{id}")
-    @Headers({"Accept: application/json","Content-Type: application/json"})
-    Call<List<Arbitros>> getArbitro(@Path("id") int id);
-
     @GET("Equipos")
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<List<Equipos>> getEquipos();
@@ -39,6 +36,10 @@ public interface ServicioApiRest {
     @GET("Partidos")
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<List<Partidos>> getPartidos();
+
+    @GET("Jugadores")
+    @Headers({"Accept: application/json","Content-Type: application/json"})
+    Call<List<Jugadores>> getJugadores();
 
     @PUT("Partidos/{idPartido}")
     @Headers({"Accept: application/json","Content-Type: application/json"})

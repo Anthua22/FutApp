@@ -43,10 +43,6 @@ public class PartidoFragment extends Fragment {
     public PartidoFragment(Partidos partidos){
         partidoactual =partidos;
     }
-
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,6 +79,7 @@ public class PartidoFragment extends Fragment {
 
         return view;
     }
+
     void ponerNombrerToolbar()
     {
         ServicioApiRestUtilidades servicioApiRestUtilidades = new ServicioApiRestUtilidades();
@@ -112,7 +109,6 @@ public class PartidoFragment extends Fragment {
             }
         });
     }
-
 
     void cambioTabs(){
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
