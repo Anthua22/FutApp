@@ -11,13 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.R;
+import com.example.futapp.Servicios.onDialogoFuncionClickListener;
 
 public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     ImageView foto;
     TextView dialgofuncion, nombre,categoria, dialogo_evento, dialogo_gol;
     Context context;
-    View.OnClickListener listenerfuncion,listenerevento,listenergol;
+    View.OnClickListener listenerevento,listenergol;
+    onDialogoFuncionClickListener listenerfuncion;
+    Jugadores jugadores;
 
     public HolderJugadores(@NonNull View itemView, Context context) {
         super(itemView);
@@ -42,10 +45,10 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
         }
         nombre.setText(jugador.getNombre_completo());
         categoria.setText(jugador.getCategoria());
-
+        jugadores = jugador;
     }
 
-    public void setClickfuncionDialgo(View.OnClickListener listener){
+    public void setClickfuncionDialgo(onDialogoFuncionClickListener listener){
         if(listener!=null) this.listenerfuncion = listener;
     }
 
@@ -60,7 +63,7 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
     public void onClick(View v) {
        switch (v.getId()){
            case R.id.dialogotitular:
-            listenerfuncion.onClick(v);
+            listenerfuncion.onFuncionClick(jugadores);
             break;
            case R.id.dialogogol:
                listenergol.onClick(v);

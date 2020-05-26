@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.Holders.HolderJugadores;
 import com.example.futapp.R;
+import com.example.futapp.Servicios.onDialogoFuncionClickListener;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
     List<Jugadores> jugadores;
     HolderJugadores holderJugadores;
     View.OnClickListener listenrfuncion,listenerevento,listenergol;
-
+    onDialogoFuncionClickListener clickfuncion;
     public AdaptadorJugadores(List<Jugadores> jugadores, Context context){
         this.jugadores  = jugadores;
         this.context = context;
@@ -30,10 +31,10 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.plantillajugador, parent,false);
         holderJugadores = new HolderJugadores(view,context);
         view.setOnClickListener(this);
-        holderJugadores.setClickfuncionDialgo(new View.OnClickListener() {
+        holderJugadores.setClickfuncionDialgo(new onDialogoFuncionClickListener() {
             @Override
-            public void onClick(View v) {
-                if(listenrfuncion!=null)listenrfuncion.onClick(v);
+            public void onFuncionClick(Jugadores jugadores) {
+                clickfuncion.onFuncionClick(jugadores);
             }
         });
         holderJugadores.setClickeventoDialogo(new View.OnClickListener() {
@@ -68,8 +69,8 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
       //  if(listenrfuncion!=null) listenrfuncion.onClick(v);
     }
 
-    public void setClickfuncionDialogo(View.OnClickListener listener){
-        if(listener!=null) listenrfuncion = listener;
+    public void setClickfuncionDialogo(onDialogoFuncionClickListener listener){
+        if(listener!=null) clickfuncion = listener;
     }
 
     public void setClickeventoDialogo(View.OnClickListener listener){

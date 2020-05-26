@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
+import com.example.futapp.Servicios.onDialogoFuncionClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +55,12 @@ public class JugadoresLocalesFragment extends Fragment {
                 Toast.makeText(getActivity(),"Evento",Toast.LENGTH_SHORT).show();
             }
         });
-        adaptadorJugadores.setClickfuncionDialogo(new View.OnClickListener() {
+        adaptadorJugadores.setClickfuncionDialogo(new onDialogoFuncionClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"Aqrui es titular",Toast.LENGTH_SHORT).show();
+            public void onFuncionClick(Jugadores jugadores) {
+                DialogFragment dialogFragment = new DialogoFuncion(jugadores);
+                dialogFragment.show(getFragmentManager(),"funcion");
+              //  Toast.makeText(getActivity(), jugadores.getNombre_completo(),Toast.LENGTH_SHORT).show();
             }
         });
 
