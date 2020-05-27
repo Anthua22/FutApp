@@ -14,6 +14,7 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -69,27 +70,34 @@ public class PartidoFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 menuItem.setChecked(true);
-                FragmentManager FM ;
-                FragmentTransaction FT;
-                switch (menuItem.getItemId()){
-                    case R.id.cerrarSesion_partido:
-                        FM = getFragmentManager();
-                        FT= FM.beginTransaction();
+                FragmentManager FM  = getFragmentManager();
+                FragmentTransaction FT = FM.beginTransaction();
+                /*try{*/
+                    switch (menuItem.getItemId()){
+                        case R.id.cerrarSesion_partido:
 
-                        Fragment fragment = new LoginFragment();
-                        FT.replace(R.id.principal, fragment);
-                        FT.commit();
-                        break;
-                    case R.id.navigationinicioConfigurarCuenta:
-                        FM = getFragmentManager();
-                        FT= FM.beginTransaction();
 
-                        /*PartidoFragment partidoFragment = new PartidoFragment();
-                        FT.replace(R.id.principal, partidoFragment);
-                        FT.commit();*/
-                        Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                            Fragment fragment = new LoginFragment();
+                            FT.replace(R.id.principal, fragment);
+                            FT.commit();
+                            break;
+                        case R.id.configurarcuenta:
+                            DialogFragment dialogFragment = new DialogoConfigurarContraseña(arbitros);
+                            dialogFragment.show(getFragmentManager(),"configurarpar");
+
+                            break;
+                        case R.id.infomacion:
+                            Fragment fragment2 = new InformacionPartidoFragment();
+                            FT.replace(R.id.principal, fragment2,"resultadofragment");
+                            FT.commit();
+                            break;
+                        default:
+                            throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
+                    }
+                /*}catch (Exception ex){
+                    Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_SHORT).show();
+                }*/
+
 
 
                 return  true;

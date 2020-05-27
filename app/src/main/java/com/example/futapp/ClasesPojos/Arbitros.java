@@ -1,6 +1,7 @@
 package com.example.futapp.ClasesPojos;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Arbitros implements Serializable {
     int id;
@@ -22,6 +23,30 @@ public class Arbitros implements Serializable {
     public Arbitros(String dni, String pass) {
         this.dni = dni;
         this.pass = pass;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Arbitros arbitros = (Arbitros) o;
+        return id == arbitros.id &&
+                Objects.equals(dni, arbitros.dni) &&
+                Objects.equals(pass, arbitros.pass) &&
+                Objects.equals(nombre_completo, arbitros.nombre_completo) &&
+                Objects.equals(foto, arbitros.foto) &&
+                Objects.equals(email, arbitros.email) &&
+                Objects.equals(fecha_nacimiento, arbitros.fecha_nacimiento) &&
+                Objects.equals(provincia, arbitros.provincia) &&
+                Objects.equals(localidad, arbitros.localidad) &&
+                Objects.equals(cp, arbitros.cp) &&
+                Objects.equals(categoria, arbitros.categoria) &&
+                Objects.equals(telefono, arbitros.telefono);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dni, pass, nombre_completo, foto, email, fecha_nacimiento, provincia, localidad, cp, categoria, telefono);
     }
 
     public Arbitros(int id, String dni, String pass, String nombre_completo, String foto, String email, String fecha_nacimiento, String provincia, String localidad, String cp, String categoria, String telefono) {

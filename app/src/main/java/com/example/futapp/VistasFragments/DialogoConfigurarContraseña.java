@@ -64,6 +64,7 @@ public class DialogoConfigurarContraseña extends DialogFragment {
         builder.setView(view).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Arbitros aux = arbitros;
                 if(!numero.getText().toString().equals(arbitros.getTelefono())){
                     arbitros.setTelefono(numero.getText().toString());
                 }else if(!correo.getText().toString().equals(arbitros.getEmail())){
@@ -85,7 +86,11 @@ public class DialogoConfigurarContraseña extends DialogFragment {
                         Toast.makeText(getActivity(),"La contraseña introducida no coincide con la actual",Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 update();
+                Toast.makeText(getActivity(),"Árbitro: "+arbitros.getNombre_completo()+" actualizado",Toast.LENGTH_SHORT).show();
+
+
 
             }
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -146,10 +151,9 @@ public class DialogoConfigurarContraseña extends DialogFragment {
             public void onResponse(Call<Arbitros> call, Response<Arbitros> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(getActivity(),"code: "+response.code(),Toast.LENGTH_SHORT).show();
-                }else{
-                    Arbitros arbitros = response.body();
-                    Toast.makeText(getActivity(),"Árbitro: "+arbitros.getNombre_completo()+" actualizado",Toast.LENGTH_SHORT).show();
                 }
+
+
 
             }
 

@@ -127,4 +127,10 @@ public class JugadoresLocalesFragment extends Fragment {
         cabera.add(capitan);
         return cabera;
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+       // outState.put
+    }
 }

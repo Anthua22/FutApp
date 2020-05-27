@@ -1,5 +1,6 @@
 package com.example.futapp.VistasFragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Equipos;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;
+import com.example.futapp.Servicios.OnSelectedItemListener;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 
 import java.util.List;
@@ -36,6 +38,13 @@ public class ResultadoPartidoFragment extends Fragment {
     EditText golvisitante, gollocal, motivosuspension;
     Switch suspendido;
     Button enviar;
+    EnviarInformacion enviarInformacion;
+
+    public interface EnviarInformacion{
+        void Enviar(String resultado);
+    }
+
+
 
     public ResultadoPartidoFragment(Partidos partidos) {
         this.partidos = partidos;
@@ -48,6 +57,13 @@ public class ResultadoPartidoFragment extends Fragment {
         asignarID(view);
         ponerValores();
         agregarEventoSwitch();
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String resultado = obtenerResultado();
+                enviarInformacion.Enviar(resultado);
+            }
+        });
         return  view;
     }
 
@@ -63,6 +79,13 @@ public class ResultadoPartidoFragment extends Fragment {
         motivosuspension = view.findViewById(R.id.motivosuspension);
 
     }
+
+    String obtenerResultado(){
+        String resultado = gollocal.getText().toString()+'-'+golvisitante.getText().toString();
+        return  resultado;
+    }
+
+
 
 
     void ponerValores(){
@@ -113,5 +136,16 @@ public class ResultadoPartidoFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            enviarInformacion = (EnviarInformacion) context;
+
+        }catch (ClassCastException e){
+            Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 }

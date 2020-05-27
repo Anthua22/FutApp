@@ -16,10 +16,10 @@
 
     <item android:title="Opciones Partido">
         <menu>
-            <item android:title="Resultado" android:id="@+id/resulado"/>
-            <item android:title="Jugadores" android:id="@+id/jugadores"/>
-            <item android:title="Staff" android:id="@+id/staff"/>
-            <item android:title="Incidencias" android:id="@+id/incidencias"/>
+            <item android:title="Ver Informacion" android:id="@+id/infomacion"/>
+            <item android:title="Generar PDF" android:id="@+id/generarpdf"/>
+            <item android:title="Ver PDF" android:id="@+id/verpdf"/>
+
         </menu>
     </item>
 </menu>
