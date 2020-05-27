@@ -10,7 +10,7 @@
         android:gravity="center"
         android:background="#3D3C3C"
         android:textColor="#fff"
-        android:text="FALTAS ACUMUULATIVAS"/>
+        android:text="FALTAS ACUMULATIVAS"/>
 
     <TableLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,6 +94,7 @@
         android:layout_height="wrap_content"
         android:text="Enviar"
         android:textColor="#fff"
+        android:id="@+id/enviarfaltastm"
         android:background="#369F01"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"/>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INCIDENCIAS"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#FFF"
+        android:background="#369F01"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
+
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Locales"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/incidenciaslocalesswitch"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/incidenciaslocales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:visibility="invisible"
+        android:hint="Escriba aquí las incidencias que correspondan al Equipo Local" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
+
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Visitantes"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/incidenciasvisitantesswitch"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/incidenciasvisitantes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:visibility="invisible"
+        android:hint="Escriba aquí las incidencias que correspondan al Equipo Visitante" />
+
+
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:id="@+id/enviarincidendias"
+        android:textColor="#fff"
+        android:background="#369F01"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"/>
+
+
+</LinearLayout>
