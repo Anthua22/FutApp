@@ -3,9 +3,11 @@ package com.example.futapp.Holders;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +21,7 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
 
     ImageView foto;
     TextView dialgofuncion, nombre,categoria, dialogo_evento, dialogo_gol;
+    CardView cardView;
     Context context;
     onDialogoFuncionClickListener listenerfuncion;
     onDialogoEventoClickListener listenerevento;
@@ -34,14 +37,18 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
         categoria = itemView.findViewById(R.id.categoriajugador);
         dialogo_evento = itemView.findViewById(R.id.dialogoevento);
         dialogo_gol = itemView.findViewById(R.id.dialogogol);
+        cardView = itemView.findViewById(R.id.cardview);
 
         dialogo_evento.setOnClickListener(this);
         dialogo_gol.setOnClickListener(this);dialgofuncion.setOnClickListener(this);
     }
 
+
+
     public void bind(Jugadores jugador){
         if(!jugador.getFoto().equals("/Assets/defecto.jpg")){
             Glide.with(context).load(jugador.getFoto()).into(foto);
+
         }
         else{
             foto.setImageResource(R.drawable.defecto);
@@ -49,6 +56,7 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
         nombre.setText(jugador.getNombre_completo());
         categoria.setText(jugador.getCategoria());
         jugadores = jugador;
+
     }
 
     public void setClickfuncionDialgo(onDialogoFuncionClickListener listener){

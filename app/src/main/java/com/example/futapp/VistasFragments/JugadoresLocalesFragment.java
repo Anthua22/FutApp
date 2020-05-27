@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.futapp.Adaptadores.AdaptadorJugadores;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.ClasesPojos.Partidos;
+import com.example.futapp.Holders.HolderJugadores;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.example.futapp.Servicios.onDialogoEventoClickListener;
@@ -37,6 +38,7 @@ public class JugadoresLocalesFragment extends Fragment {
     List<Jugadores> jugadoresList;
     Partidos partidos;
     AdaptadorJugadores adaptadorJugadores;
+    int posicion;
 
     public JugadoresLocalesFragment(Partidos partidos) {
         this.partidos = partidos;
@@ -51,6 +53,12 @@ public class JugadoresLocalesFragment extends Fragment {
         adaptadorJugadores = new AdaptadorJugadores(jugadoresList,getActivity());
         recyclerView.setAdapter(adaptadorJugadores);
         obtenerJugadores();
+        adaptadorJugadores.onClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                posicion = recyclerView.getChildAdapterPosition(v);
+            }
+        });
         adaptadorJugadores.setClickeventoDialogo(new onDialogoEventoClickListener() {
             @Override
             public void onEventoClick(Jugadores jugadores) {
@@ -61,11 +69,12 @@ public class JugadoresLocalesFragment extends Fragment {
             @Override
             public void onFuncionClick(Jugadores jugadores) {
 
-                DialogFragment dialogFragment = new DialogoFuncion(jugadores, pasarArraylistCabecera());
+                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicion);
+                DialogFragment dialogFragment = new DialogoFuncion(jugadores, pasarArraylistCabecera(), holder);
+
                 dialogFragment.show(getFragmentManager(),"funcion");
             }
         });
-
         adaptadorJugadores.setClickgolDialogo(new onDialogoGolClickListener() {
             @Override
             public void onGolClick(Jugadores jugadores) {

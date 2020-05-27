@@ -3,6 +3,7 @@ package com.example.futapp.VistasFragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +14,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Jugadores;
+import com.example.futapp.Holders.HolderJugadores;
 import com.example.futapp.R;
 
 import java.util.ArrayList;
@@ -32,10 +37,14 @@ public class DialogoFuncion extends DialogFragment {
     Jugadores jugadores;
     ArrayList<TextView> cabecera;
     ArrayList<Integer> dorsales;
+    RecyclerView.ViewHolder holderJugadores;
+    CardView cardView;
+    TextView dorsaltext;
 
-    public DialogoFuncion(Jugadores jugadores, ArrayList<TextView> cabecera) {
+    public DialogoFuncion(Jugadores jugadores, ArrayList<TextView> cabecera, RecyclerView.ViewHolder holderJugadores) {
         this.jugadores = jugadores;
         this.cabecera = cabecera;
+        this.holderJugadores = holderJugadores;
         dorsales = new ArrayList<>();
     }
 
@@ -48,6 +57,7 @@ public class DialogoFuncion extends DialogFragment {
         View view = inflater.inflate(R.layout.dialogo_funcion, null);
         asignarID(view);
         asignarValores();
+        recuperarElementoHolder();
         builder.setView(view).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
              @Override
              public void onClick(DialogInterface dialog, int which) {
@@ -55,7 +65,6 @@ public class DialogoFuncion extends DialogFragment {
                      if(!dorsales.contains(Integer.parseInt(dorsal.getText().toString()))){
                          jugadores.setDorsal(Integer.parseInt(dorsal.getText().toString()));
                          if(titular.isChecked()){
-
                              int numerotitulares = Integer.parseInt(cabecera.get(0).getText().toString());
                              if(comproQuinteto(numerotitulares)){
                                  numerotitulares++;
@@ -67,6 +76,7 @@ public class DialogoFuncion extends DialogFragment {
                                      jugadores.setSuplente(false);
                                  }
                                  jugadores.setTitular(true);
+                                 cardView.setCardBackgroundColor(Color.rgb(115,238,156));
                              }else{
                                  Toast.makeText(getActivity(), "Ya están puesto los 5 jugadores titulares",Toast.LENGTH_LONG).show();
                              }
@@ -83,6 +93,7 @@ public class DialogoFuncion extends DialogFragment {
                              suplentes++;
                              cabecera.get(1).setText(suplentes+"");
                              jugadores.setSuplente(true);
+                             cardView.setCardBackgroundColor(Color.rgb(166,182,171));
                          }
                          if(portero.isChecked()){
                              int numeroporteros = Integer.parseInt(cabecera.get(2).getText().toString());
@@ -112,7 +123,11 @@ public class DialogoFuncion extends DialogFragment {
                              cabecera.get(3).setText(numerocapitan+"");
                              jugadores.setCapitan(false);
                          }
-                     }else{
+                         dorsaltext.setText(jugadores.getDorsal()+"");
+
+                     }
+
+                     else{
                          Toast.makeText(getActivity(), "El dorsal "+dorsal.getText()+" ya está asignado",Toast.LENGTH_SHORT).show();
                      }
 
@@ -181,5 +196,10 @@ public class DialogoFuncion extends DialogFragment {
 
     boolean comproQuinteto(int numerotitulares){
         return  numerotitulares<=5;
+    }
+
+    void recuperarElementoHolder(){
+        cardView = holderJugadores.itemView.findViewById(R.id.cadjugador);
+        dorsaltext = holderJugadores.itemView.findViewById(R.id.dialogotitular);
     }
 }

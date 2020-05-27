@@ -110,6 +110,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#556269">
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="15dp"
+            android:background="#73EE9C"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulares"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"/>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="20dp"
+            android:background="#A6B6AB"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suplentes"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"
+            />
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="20dp"
+            android:background="#fff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Convocado"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"
+            />
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#E2EBE5"
         android:orientation="horizontal">
 
