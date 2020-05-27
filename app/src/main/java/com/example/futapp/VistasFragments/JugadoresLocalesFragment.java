@@ -62,7 +62,8 @@ public class JugadoresLocalesFragment extends Fragment {
         adaptadorJugadores.setClickeventoDialogo(new onDialogoEventoClickListener() {
             @Override
             public void onEventoClick(Jugadores jugadores) {
-                DialogFragment dialogFragment = new DialogoEvento(jugadores);
+                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicion);
+                DialogFragment dialogFragment = new DialogoEvento(jugadores, holder);
                 dialogFragment.show(getFragmentManager(),"evento");
             }
         });
@@ -79,7 +80,8 @@ public class JugadoresLocalesFragment extends Fragment {
         adaptadorJugadores.setClickgolDialogo(new onDialogoGolClickListener() {
             @Override
             public void onGolClick(Jugadores jugadores) {
-                Toast.makeText(getActivity(), jugadores.getCategoria(),Toast.LENGTH_SHORT).show();
+                DialogFragment dialogFragment = new DialogoGol(jugadores);
+                dialogFragment.show(getFragmentManager(),"gol");
             }
         });
         recyclerView.setHasFixedSize(true);
