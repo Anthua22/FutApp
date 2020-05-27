@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.futapp.Adaptadores.AdaptadorJugadores;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.ClasesPojos.Partidos;
-import com.example.futapp.Holders.HolderJugadores;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.example.futapp.Servicios.onDialogoEventoClickListener;
@@ -63,7 +62,7 @@ public class JugadoresLocalesFragment extends Fragment {
             @Override
             public void onEventoClick(Jugadores jugadores) {
                 RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicion);
-                DialogFragment dialogFragment = new DialogoEvento(jugadores, holder);
+                DialogFragment dialogFragment = new DialogoEventoFragment(jugadores, holder);
                 dialogFragment.show(getFragmentManager(),"evento");
             }
         });
@@ -72,7 +71,7 @@ public class JugadoresLocalesFragment extends Fragment {
             public void onFuncionClick(Jugadores jugadores) {
 
                 RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicion);
-                DialogFragment dialogFragment = new DialogoFuncion(jugadores, pasarArraylistCabecera(), holder);
+                DialogFragment dialogFragment = new DialogoFuncionFragment(jugadores, pasarArraylistCabecera(), holder);
 
                 dialogFragment.show(getFragmentManager(),"funcion");
             }
@@ -80,7 +79,7 @@ public class JugadoresLocalesFragment extends Fragment {
         adaptadorJugadores.setClickgolDialogo(new onDialogoGolClickListener() {
             @Override
             public void onGolClick(Jugadores jugadores) {
-                DialogFragment dialogFragment = new DialogoGol(jugadores);
+                DialogFragment dialogFragment = new DialogoGolFragment(jugadores);
                 dialogFragment.show(getFragmentManager(),"gol");
             }
         });

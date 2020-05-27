@@ -1,8 +1,6 @@
 package com.example.futapp.Holders;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;

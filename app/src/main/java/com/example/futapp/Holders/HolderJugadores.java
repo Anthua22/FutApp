@@ -38,9 +38,9 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
         dialogo_evento = itemView.findViewById(R.id.dialogoevento);
         dialogo_gol = itemView.findViewById(R.id.dialogogol);
         cardView = itemView.findViewById(R.id.cardview);
-
         dialogo_evento.setOnClickListener(this);
-        dialogo_gol.setOnClickListener(this);dialgofuncion.setOnClickListener(this);
+        dialogo_gol.setOnClickListener(this);
+        dialgofuncion.setOnClickListener(this);
     }
 
 

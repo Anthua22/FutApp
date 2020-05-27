@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.R;
 
-public class DialogoEvento extends DialogFragment {
+public class DialogoEventoFragment extends DialogFragment {
 
     Jugadores jugadores;
     EditText motivoamarilla, motivoroja, minutoamarilla,minutoroja, motivolesion, motivosegundamarilla, minutosegundaamrilla;
@@ -30,7 +30,7 @@ public class DialogoEvento extends DialogFragment {
     RecyclerView.ViewHolder holderJugadores;
     TextView tarjetas;
 
-    public DialogoEvento(Jugadores jugadores, RecyclerView.ViewHolder holderJugadores){
+    public DialogoEventoFragment(Jugadores jugadores, RecyclerView.ViewHolder holderJugadores){
         this.jugadores = jugadores;
         this.holderJugadores = holderJugadores;
     }
@@ -63,7 +63,7 @@ public class DialogoEvento extends DialogFragment {
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                DialogoEvento.this.getDialog().cancel();
+                DialogoEventoFragment.this.getDialog().cancel();
             }
         });
         lesion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

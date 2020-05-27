@@ -8,18 +8,28 @@ public class Staffs implements Serializable {
     String fecha_nacimiento;
     String dni;
     String nombre_completo;
+    String foto;
     int equipo;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public Staffs() {
     }
 
-    public Staffs(int id, String cargo, String fecha_nacimiento, String dni, int equipo, String nombre_completo) {
+    public Staffs(int id, String cargo, String fecha_nacimiento, String dni, int equipo, String nombre_completo, String foto) {
         this.id = id;
         this.cargo = cargo;
         this.fecha_nacimiento = fecha_nacimiento;
         this.dni = dni;
         this.nombre_completo = nombre_completo;
         this.equipo = equipo;
+        this.foto = foto;
     }
 
     public String getNombre_completo() {

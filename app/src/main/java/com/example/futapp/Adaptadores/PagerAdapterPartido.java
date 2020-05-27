@@ -9,6 +9,7 @@ import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
 import com.example.futapp.VistasFragments.JugadoresFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
+import com.example.futapp.VistasFragments.StaffsFragment;
 
 public class PagerAdapterPartido extends FragmentStatePagerAdapter {
     int numeroPestaña;
@@ -33,8 +34,8 @@ public class PagerAdapterPartido extends FragmentStatePagerAdapter {
                 JugadoresFragment jugadoresFragment = new JugadoresFragment(partidos);
                 return jugadoresFragment;
             case 3:
-                DatosBasicosFragment datosBasicosFragment3 = new DatosBasicosFragment(partidos);
-                return datosBasicosFragment3;
+                StaffsFragment staffsFragment = new StaffsFragment(partidos);
+                return staffsFragment;
             case 4:
                 DatosBasicosFragment datosBasicosFragment4 = new DatosBasicosFragment(partidos);
                 return  datosBasicosFragment4;

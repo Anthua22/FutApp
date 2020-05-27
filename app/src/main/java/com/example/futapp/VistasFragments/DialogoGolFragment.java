@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -29,7 +28,7 @@ import android.widget.Toast;
 import java.sql.Types;
 import java.util.ArrayList;
 
-public class DialogoGol extends DialogFragment {
+public class DialogoGolFragment extends DialogFragment {
 
     TableLayout tablagol;
     Spinner numerogoles;
@@ -37,7 +36,7 @@ public class DialogoGol extends DialogFragment {
     ArrayList<String> goles;
     Jugadores jugadores;
 
-    public DialogoGol(Jugadores jugadores) {
+    public DialogoGolFragment(Jugadores jugadores) {
         this.jugadores = jugadores;
     }
 
@@ -59,7 +58,7 @@ public class DialogoGol extends DialogFragment {
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                DialogoGol.this.getDialog().cancel();
+                DialogoGolFragment.this.getDialog().cancel();
             }
         });
 

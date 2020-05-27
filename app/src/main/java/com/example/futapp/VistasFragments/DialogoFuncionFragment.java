@@ -14,7 +14,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -23,12 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Jugadores;
-import com.example.futapp.Holders.HolderJugadores;
 import com.example.futapp.R;
 
 import java.util.ArrayList;
 
-public class DialogoFuncion extends DialogFragment {
+public class DialogoFuncionFragment extends DialogFragment {
 
     TextView nombre, categoria;
     ImageView foto;
@@ -41,7 +39,7 @@ public class DialogoFuncion extends DialogFragment {
     CardView cardView;
     TextView dorsaltext;
 
-    public DialogoFuncion(Jugadores jugadores, ArrayList<TextView> cabecera, RecyclerView.ViewHolder holderJugadores) {
+    public DialogoFuncionFragment(Jugadores jugadores, ArrayList<TextView> cabecera, RecyclerView.ViewHolder holderJugadores) {
         this.jugadores = jugadores;
         this.cabecera = cabecera;
         this.holderJugadores = holderJugadores;
@@ -142,7 +140,7 @@ public class DialogoFuncion extends DialogFragment {
              }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                  @Override
                  public void onClick(DialogInterface dialog, int which) {
-                     DialogoFuncion.this.getDialog().cancel();
+                     DialogoFuncionFragment.this.getDialog().cancel();
                  }
              });
 
