@@ -41,7 +41,7 @@ public class ResultadoPartidoFragment extends Fragment {
     EnviarInformacion enviarInformacion;
 
     public interface EnviarInformacion{
-        void Enviar(String resultado);
+        void Enviar(String resultado, String motivosuspencion);
     }
 
 
@@ -60,8 +60,8 @@ public class ResultadoPartidoFragment extends Fragment {
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String resultado = obtenerResultado();
-                enviarInformacion.Enviar(resultado);
+
+                enviarInformacion.Enviar(obtenerResultado(), obtenerSuspension());
             }
         });
         return  view;
@@ -83,6 +83,10 @@ public class ResultadoPartidoFragment extends Fragment {
     String obtenerResultado(){
         String resultado = gollocal.getText().toString()+'-'+golvisitante.getText().toString();
         return  resultado;
+    }
+
+    String obtenerSuspension(){
+        return motivosuspension.getText().toString();
     }
 
 

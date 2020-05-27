@@ -18,11 +18,11 @@ import com.example.futapp.R;
 
 public class InformacionPartidoFragment extends DialogFragment {
     TextView textoresultado;
-    View view;
-    public static InformacionPartidoFragment newinsTance(String text){
+    public static InformacionPartidoFragment newinsTance(String text, String suspension){
         InformacionPartidoFragment informacionPartidoFragment = new InformacionPartidoFragment();
         Bundle b = new Bundle();
         b.putString("resultado",text);
+        b.putString("suspension",suspension);
         informacionPartidoFragment.setArguments(b);
         return informacionPartidoFragment;
     }
@@ -39,13 +39,25 @@ public class InformacionPartidoFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         if(savedInstanceState!=null){
             String result =  savedInstanceState.getString("resultado");
+            String suspension = savedInstanceState.getString("suspension");
+            if(suspension.length()>0){
+                textoresultado.setText(suspension+","+result);
+            }
             textoresultado.setText(result);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.enviarinformacion, null);
         textoresultado = view.findViewById(R.id.resultadoooo);
-        textoresultado.setText(this.getArguments().getString("resultado"));
+        String resulta= this.getArguments().getString("resultado");
+        String suspen = this.getArguments().getString("suspension");
+        if(suspen.length()>0){
+            textoresultado.setText(suspen+","+resulta);
+        }else{
+            textoresultado.setText(resulta);
+        }
+
+
         builder.setView(view);
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
@@ -56,20 +68,7 @@ public class InformacionPartidoFragment extends DialogFragment {
         return builder.create();
     }
 
-    /*@Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = getActivity().getLayoutInflater().inflate(R.layout.enviarinformacion, null);
 
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        textoresultado = view.findViewById(R.id.resultadoooo);
-        textoresultado.setText(this.getArguments().getString("resultado"));
-    }*/
 
 
 }

@@ -35,18 +35,14 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
 
 
     @Override
-    public void Enviar(String resultado) {
+    public void Enviar(String resultado, String d) {
         text = resultado;
         InformacionPartidoFragment informacionPartidoFragment = (InformacionPartidoFragment) getSupportFragmentManager().findFragmentByTag("resultadofragment");
         if(informacionPartidoFragment!=null){
             informacionPartidoFragment.pasandoDatos(resultado);
         }else{
-          /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.principal,InformacionPartidoFragment.newinsTance(text));
-            ft.commit();
-            ft.addToBackStack(null);*/
 
-            DialogFragment dialogFragment = InformacionPartidoFragment.newinsTance(text);
+            DialogFragment dialogFragment = InformacionPartidoFragment.newinsTance(text,d);
             dialogFragment.show(getSupportFragmentManager(),"resultado");
         }
 
