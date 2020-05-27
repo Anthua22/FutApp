@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
+import com.example.futapp.VistasFragments.FaltasTiempoMuertoFragment;
 import com.example.futapp.VistasFragments.JugadoresFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 import com.example.futapp.VistasFragments.StaffsFragment;
@@ -37,8 +38,8 @@ public class PagerAdapterPartido extends FragmentStatePagerAdapter {
                 StaffsFragment staffsFragment = new StaffsFragment(partidos);
                 return staffsFragment;
             case 4:
-                DatosBasicosFragment datosBasicosFragment4 = new DatosBasicosFragment(partidos);
-                return  datosBasicosFragment4;
+                FaltasTiempoMuertoFragment faltasTiempoMuertoFragment = new FaltasTiempoMuertoFragment(partidos);
+                return  faltasTiempoMuertoFragment;
             case 5:
                 return new DatosBasicosFragment(partidos);
         }

@@ -58,6 +58,7 @@ public class StaffsLocalesFragment extends Fragment {
         adaptadorStaff.setClickSwitchlistener(new onAsisteStaffClickListener() {
             @Override
             public void onAsisteClick(Staffs staffs) {
+
                 RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicion);
                 Switch switc = holder.itemView.findViewById(R.id.staffswitc);
                 CardView cardView = holder.itemView.findViewById(R.id.cardviewstaff);
