@@ -11,6 +11,52 @@ public class Jugadores implements Serializable {
     String fecha_nacimiento;
     String dni;
     int equipo;
+    boolean titular;
+    boolean portero;
+    boolean capitan;
+    boolean suplente;
+    int dorsal;
+
+    public int getDorsal() {
+        return dorsal;
+    }
+
+    public void setDorsal(int dorsal) {
+        this.dorsal = dorsal;
+    }
+
+    public boolean isCapitan() {
+        return capitan;
+    }
+
+    public void setCapitan(boolean capitan) {
+        this.capitan = capitan;
+    }
+
+    public boolean isTitular() {
+        return titular;
+    }
+
+    public void setTitular(boolean titular) {
+        this.titular = titular;
+    }
+
+    public boolean isPortero() {
+        return portero;
+    }
+
+    public void setPortero(boolean portero) {
+        this.portero = portero;
+    }
+
+    public boolean isSuplente() {
+        return suplente;
+    }
+
+    public void setSuplente(boolean suplente) {
+        this.suplente = suplente;
+    }
+
 
     public Jugadores(){
 

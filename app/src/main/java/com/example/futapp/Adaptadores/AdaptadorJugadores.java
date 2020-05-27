@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.Holders.HolderJugadores;
 import com.example.futapp.R;
+import com.example.futapp.Servicios.onDialogoEventoClickListener;
 import com.example.futapp.Servicios.onDialogoFuncionClickListener;
+import com.example.futapp.Servicios.onDialogoGolClickListener;
 
 import java.util.List;
 
@@ -19,8 +21,9 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
     Context context;
     List<Jugadores> jugadores;
     HolderJugadores holderJugadores;
-    View.OnClickListener listenrfuncion,listenerevento,listenergol;
     onDialogoFuncionClickListener clickfuncion;
+    onDialogoEventoClickListener listenerevento;
+    onDialogoGolClickListener listenergol;
     public AdaptadorJugadores(List<Jugadores> jugadores, Context context){
         this.jugadores  = jugadores;
         this.context = context;
@@ -37,17 +40,17 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
                 clickfuncion.onFuncionClick(jugadores);
             }
         });
-        holderJugadores.setClickeventoDialogo(new View.OnClickListener() {
+        holderJugadores.setClickeventoDialogo(new onDialogoEventoClickListener() {
             @Override
-            public void onClick(View v) {
-                if(listenerevento!=null)listenerevento.onClick(v);
+            public void onEventoClick(Jugadores jugadores) {
+                listenerevento.onEventoClick(jugadores);
             }
         });
 
-        holderJugadores.setClickgolDialogo(new View.OnClickListener() {
+        holderJugadores.setClickgolDialogo(new onDialogoGolClickListener() {
             @Override
-            public void onClick(View v) {
-                if(listenergol!=null)listenergol.onClick(v);
+            public void onGolClick(Jugadores jugadores) {
+                listenergol.onGolClick(jugadores);
             }
         });
         return holderJugadores;
@@ -73,11 +76,11 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
         if(listener!=null) clickfuncion = listener;
     }
 
-    public void setClickeventoDialogo(View.OnClickListener listener){
+    public void setClickeventoDialogo(onDialogoEventoClickListener listener){
         if(listener!=null)this.listenerevento = listener;
     }
 
-    public void setClickgolDialogo(View.OnClickListener listener){
+    public void setClickgolDialogo(onDialogoGolClickListener listener){
         if(listener!=null)this.listenergol = listener;
     }
 }

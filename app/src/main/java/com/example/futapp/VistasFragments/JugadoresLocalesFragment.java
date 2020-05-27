@@ -19,7 +19,9 @@ import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
+import com.example.futapp.Servicios.onDialogoEventoClickListener;
 import com.example.futapp.Servicios.onDialogoFuncionClickListener;
+import com.example.futapp.Servicios.onDialogoGolClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,25 +51,25 @@ public class JugadoresLocalesFragment extends Fragment {
         adaptadorJugadores = new AdaptadorJugadores(jugadoresList,getActivity());
         recyclerView.setAdapter(adaptadorJugadores);
         obtenerJugadores();
-        adaptadorJugadores.setClickeventoDialogo(new View.OnClickListener() {
+        adaptadorJugadores.setClickeventoDialogo(new onDialogoEventoClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"Evento",Toast.LENGTH_SHORT).show();
+            public void onEventoClick(Jugadores jugadores) {
+                Toast.makeText(getActivity(), jugadores.getNombre_completo(),Toast.LENGTH_SHORT).show();
             }
         });
         adaptadorJugadores.setClickfuncionDialogo(new onDialogoFuncionClickListener() {
             @Override
             public void onFuncionClick(Jugadores jugadores) {
-                DialogFragment dialogFragment = new DialogoFuncion(jugadores);
+
+                DialogFragment dialogFragment = new DialogoFuncion(jugadores, pasarArraylistCabecera());
                 dialogFragment.show(getFragmentManager(),"funcion");
-              //  Toast.makeText(getActivity(), jugadores.getNombre_completo(),Toast.LENGTH_SHORT).show();
             }
         });
 
-        adaptadorJugadores.setClickgolDialogo(new View.OnClickListener() {
+        adaptadorJugadores.setClickgolDialogo(new onDialogoGolClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"GOLLL",Toast.LENGTH_SHORT).show();
+            public void onGolClick(Jugadores jugadores) {
+                Toast.makeText(getActivity(), jugadores.getCategoria(),Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setHasFixedSize(true);
@@ -104,5 +106,14 @@ public class JugadoresLocalesFragment extends Fragment {
         suplentes = view.findViewById(R.id.suplentes);
         porteros = view.findViewById(R.id.porteros);
         capitan = view.findViewById(R.id.capitan);
+    }
+
+    private ArrayList<TextView> pasarArraylistCabecera(){
+        ArrayList<TextView> cabera = new ArrayList<>();
+        cabera.add(titulares);
+        cabera.add(suplentes);
+        cabera.add(porteros);
+        cabera.add(capitan);
+        return cabera;
     }
 }
