@@ -45,6 +45,8 @@ public interface ServicioApiRest {
     @Headers({"Accept: application/json","Content-Type: application/json"})
     Call<Partidos> updatePartido(@Path("idPartido") int idPartido, @Body Partidos partido);
 
-
+    @PUT("Arbitros/{id}")
+    @Headers({"Accept: application/json","Content-Type: application/json"})
+    Call<Arbitros> updateArbirtro(@Path("id") int id, @Body Arbitros arbitros);
 
 }

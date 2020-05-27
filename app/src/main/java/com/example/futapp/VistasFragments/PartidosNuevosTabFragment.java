@@ -59,7 +59,7 @@ public class PartidosNuevosTabFragment extends Fragment {
                 int posicion = recyclerView.getChildAdapterPosition(v);
 
 
-                PartidoFragment partidoFragment = new PartidoFragment(partidos.get(posicion));
+                PartidoFragment partidoFragment = new PartidoFragment(partidos.get(posicion),actual);
                 FT.replace(R.id.principal, partidoFragment);
                 FT.commit();
 

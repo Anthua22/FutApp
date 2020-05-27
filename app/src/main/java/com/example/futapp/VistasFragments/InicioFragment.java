@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -74,13 +75,10 @@ public class InicioFragment extends Fragment {
                         FT.commit();
                         break;
                     case R.id.navigationinicioConfigurarCuenta:
-                        FM = getFragmentManager();
-                        FT= FM.beginTransaction();
+                        DialogFragment dialogFragment = new DialogoConfigurarContraseña(arbitrosactual);
 
-                        /*PartidoFragment partidoFragment = new PartidoFragment();
-                        FT.replace(R.id.principal, partidoFragment);
-                        FT.commit();*/
-                        Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                        dialogFragment.show(getFragmentManager(),"configurar");
+                        //Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                         break;
                 }
 

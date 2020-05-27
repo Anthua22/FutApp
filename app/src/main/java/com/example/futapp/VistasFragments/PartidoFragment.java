@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -13,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
@@ -39,9 +43,14 @@ public class PartidoFragment extends Fragment {
     Partidos partidoactual;
     Toolbar toolbar;
     ViewPager viewPager;
+    TextView categoria, nombre;
+    ImageView fotoarbitro;
+    Arbitros arbitros;
     String local, visitante, resultado;
-    public PartidoFragment(Partidos partidos){
+
+    public PartidoFragment(Partidos partidos, Arbitros arbitros){
         partidoactual =partidos;
+        this.arbitros = arbitros;
     }
     @Nullable
     @Override
@@ -59,10 +68,36 @@ public class PartidoFragment extends Fragment {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
+                menuItem.setChecked(true);
+                FragmentManager FM ;
+                FragmentTransaction FT;
+                switch (menuItem.getItemId()){
+                    case R.id.cerrarSesion_partido:
+                        FM = getFragmentManager();
+                        FT= FM.beginTransaction();
+
+                        Fragment fragment = new LoginFragment();
+                        FT.replace(R.id.principal, fragment);
+                        FT.commit();
+                        break;
+                    case R.id.navigationinicioConfigurarCuenta:
+                        FM = getFragmentManager();
+                        FT= FM.beginTransaction();
+
+                        /*PartidoFragment partidoFragment = new PartidoFragment();
+                        FT.replace(R.id.principal, partidoFragment);
+                        FT.commit();*/
+                        Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+
+                return  true;
             }
         });
+
+        View viewheader = navigationView.getHeaderView(0);
+        colocarDatosHeader(viewheader);
         tabLayout = view.findViewById(R.id.tablayout_partido);
         tabLayout.addTab(tabLayout.newTab().setText("Datos Básicos"));
         tabLayout.addTab(tabLayout.newTab().setText("Resultado"));
@@ -127,5 +162,23 @@ public class PartidoFragment extends Fragment {
 
             }
         });
+    }
+
+    private void colocarDatosHeader(View viewheader){
+
+        nombre = viewheader.findViewById(R.id.nombreArbitro);
+        categoria  = viewheader.findViewById(R.id.categoria);
+        fotoarbitro = viewheader.findViewById(R.id.fotoArbitro);
+
+        nombre.setText(arbitros.getNombre_completo());
+        categoria.setText(arbitros.getCategoria());
+
+        if(!arbitros.getFoto().equals("/Assets/defecto.jpg")){
+            Glide.with(getActivity()).load(arbitros.getFoto())
+                    .into(fotoarbitro);
+        }else{
+            fotoarbitro.setImageResource(R.drawable.defecto);
+        }
+
     }
 }
