@@ -62,7 +62,8 @@ public class JugadoresLocalesFragment extends Fragment {
         adaptadorJugadores.setClickeventoDialogo(new onDialogoEventoClickListener() {
             @Override
             public void onEventoClick(Jugadores jugadores) {
-                Toast.makeText(getActivity(), jugadores.getNombre_completo(),Toast.LENGTH_SHORT).show();
+                DialogFragment dialogFragment = new DialogoEvento(jugadores);
+                dialogFragment.show(getFragmentManager(),"evento");
             }
         });
         adaptadorJugadores.setClickfuncionDialogo(new onDialogoFuncionClickListener() {
