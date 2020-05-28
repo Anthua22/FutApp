@@ -8,11 +8,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.futapp.VistasFragments.DialogoEventoFragment;
+import com.example.futapp.VistasFragments.DialogoGolFragment;
 import com.example.futapp.VistasFragments.InformacionPartidoFragment;
+import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.LoginFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 
-public class MainActivity extends AppCompatActivity implements ResultadoPartidoFragment.EnviarInformacion {
+public class MainActivity extends AppCompatActivity implements ResultadoPartidoFragment.EnviarInformacion, JugadoresLocalesVisitantesFragment.EnviarAlineaciones, DialogoEventoFragment.EnviarSanciones, DialogoGolFragment.EnviarGolesInterface {
 
     String text;
 
@@ -33,19 +36,30 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
     public void Enviar(String resultado, String d) {
         text = resultado;
         InformacionPartidoFragment informacionPartidoFragment = (InformacionPartidoFragment) getSupportFragmentManager().findFragmentByTag("resultadofragment");
-        if(informacionPartidoFragment!=null){
-            informacionPartidoFragment.pasandoDatos(resultado);
-        }else{
 
-            DialogFragment dialogFragment = InformacionPartidoFragment.newinsTance(text,d);
-            dialogFragment.show(getSupportFragmentManager(),"resultado");
-        }
+        DialogFragment dialogFragment = InformacionPartidoFragment.newinsTance(text,d);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+
 
 
     }
 
 
+    @Override
+    public void Enviar(String alineacion) {
+        DialogFragment dialogFragment = InformacionPartidoFragment.newinsTanceAlineacion(alineacion);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+    }
 
+    @Override
+    public void EnvioSanciones(String string) {
+        DialogFragment dialogFragment = InformacionPartidoFragment.newIntanceEvento(string);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+    }
 
-
+    @Override
+    public void EnviarGoles(String te) {
+        DialogFragment dialogFragment = InformacionPartidoFragment.newIntanceGol(te);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+    }
 }

@@ -73,7 +73,7 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
     public void onClick(View v) {
        switch (v.getId()){
            case R.id.dialogotitular:
-            listenerfuncion.onFuncionClick(jugadores);
+            listenerfuncion.onFuncionClick(getAdapterPosition(),jugadores);
             break;
            case R.id.dialogogol:
                listenergol.onGolClick(jugadores);

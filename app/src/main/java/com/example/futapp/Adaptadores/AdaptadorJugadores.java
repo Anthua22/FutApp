@@ -40,8 +40,8 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
         view.setOnClickListener(this);
         holderJugadores.setClickfuncionDialgo(new OnDialogoFuncionClickListener() {
             @Override
-            public void onFuncionClick(Jugadores jugadores) {
-                clickfuncion.onFuncionClick(jugadores);
+            public void onFuncionClick(int posicion, Jugadores jugadores) {
+                clickfuncion.onFuncionClick(holderJugadores.getAdapterPosition(), jugadores);
             }
         });
         holderJugadores.setClickeventoDialogo(new OnDialogoEventoClickListener() {

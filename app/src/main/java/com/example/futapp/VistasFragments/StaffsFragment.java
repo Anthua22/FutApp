@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.futapp.Adaptadores.PagerAdapterJugadores;
 import com.example.futapp.Adaptadores.PagerAdapterStaffs;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;

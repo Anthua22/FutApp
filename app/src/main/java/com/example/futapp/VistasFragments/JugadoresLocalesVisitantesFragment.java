@@ -1,9 +1,11 @@
 package com.example.futapp.VistasFragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +46,16 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
 
     TextView nombreequipolocal, nommbreequipovisitante;
     ImageView local, visitante;
+    Button enviar;
 
     int posicionRecyclerlocal, posicionrecyclervisitante;
     View view;
+
+    EnviarAlineaciones enviarAlineaciones;
+
+    public interface EnviarAlineaciones{
+        void Enviar(String alineacion);
+    }
 
     public JugadoresLocalesVisitantesFragment(Partidos partidos) {
         this.partidos = partidos;
@@ -74,17 +83,22 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         recyclerViewvisitantes.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(comprobarQuinteto()){
+                    enviarAlineaciones.Enviar(obtenerAlicneaciones());
+                }else{
+                    Toast.makeText(getActivity(), "Para manadar la alineación hacer falta que los equipos cuenten con al menos 5 jugadores",Toast.LENGTH_SHORT).show();
+                }
 
+            }
+        });
         return  view;
     }
 
     void clicksItemsRecycler(){
-        adaptadorJugadores.onClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                posicionRecyclerlocal = recyclerView.getChildAdapterPosition(v);
-            }
-        });
+
         adaptadorJugadores.setClickeventoDialogo(new OnDialogoEventoClickListener() {
             @Override
             public void onEventoClick(Jugadores jugadores) {
@@ -95,9 +109,10 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         });
         adaptadorJugadores.setClickfuncionDialogo(new OnDialogoFuncionClickListener() {
             @Override
-            public void onFuncionClick(Jugadores jugadores) {
+            public void onFuncionClick(int posicion, Jugadores jugadores) {
 
                 RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicionRecyclerlocal);
+
                 DialogFragment dialogFragment = new DialogoFuncionFragment(jugadores, pasarArraylistCabeceraLocales(), holder);
 
                 dialogFragment.show(getFragmentManager(),"funcion");
@@ -131,8 +146,9 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         });
         adaptadorjugadoresvisitantes.setClickfuncionDialogo(new OnDialogoFuncionClickListener() {
             @Override
-            public void onFuncionClick(Jugadores jugadores) {
+            public void onFuncionClick(int posicion, Jugadores jugadores) {
                 RecyclerView.ViewHolder holder = recyclerViewvisitantes.findViewHolderForAdapterPosition(posicionrecyclervisitante);
+
                 DialogFragment dialogFragment = new DialogoFuncionFragment(jugadores, pasarArraylistCabeceraVisitantes(), holder);
 
                 dialogFragment.show(getFragmentManager(),"funcionvisitante");
@@ -192,6 +208,8 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         suplentesvisitantes = view.findViewById(R.id.suplentesvisitantes);
         porterosvisitantes = view.findViewById(R.id.porterosvisitantes);
         capitanvisitante = view.findViewById(R.id.capitanvisitantes);
+
+        enviar = view.findViewById(R.id.enviaralineacion);
 
         recyclerViewvisitantes = view.findViewById(R.id.recyclervisitantes);
     }
@@ -254,5 +272,51 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         return cabecera;
     }
 
+    private String obtenerAlicneaciones(){
+        String resultado ="Locales: ";
+        for(Jugadores x: jugadoreslocalesList ){
+            if(x.isTitular() || x.isSuplente()){
+                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero();
+            }
+        }
 
+        resultado+="\nVisitantes: ";
+        for (Jugadores x: jugadoresvisitanteList){
+            if(x.isTitular() || x.isSuplente()){
+                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero();
+
+            }
+        }
+        return resultado;
+    }
+
+    private boolean comprobarQuinteto(){
+        int contadorlocales =0;
+        int contadorvisitantes =0;
+        for(Jugadores x: jugadoreslocalesList ){
+            if(x.isTitular() || x.isSuplente()){
+                contadorlocales++;
+            }
+        }
+        for (Jugadores x: jugadoresvisitanteList){
+            if(x.isTitular() || x.isSuplente()){
+               contadorvisitantes++;
+
+            }
+        }
+
+        return (contadorlocales>=4 && contadorvisitantes>=1);
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            enviarAlineaciones = (EnviarAlineaciones) context;
+
+        }catch (ClassCastException e){
+            Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
 }

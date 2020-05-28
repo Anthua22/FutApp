@@ -5,7 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jugadores"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#FFF"
+        android:background="#369F01"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -191,41 +199,58 @@
 
 
             </LinearLayout>
-            <LinearLayout
+            <TableLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#E2EBE5"
                 android:orientation="horizontal">
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="DORSAL"
+                    android:textStyle="bold"
+
+                    android:textColor="#000"
+                    android:textSize="13dp"
+
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                    />
+                <TextView
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="JUGADOR/A"
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:textSize="13dp"
+
                     android:gravity="center"
-                    android:layout_marginLeft="145dp"
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="13dp"
                     android:textColor="#000"
-                    android:layout_marginLeft="85dp"
+                    android:layout_gravity="right"
                     android:text="EVENTOS"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:textSize="13dp"
                     android:textColor="#000"
                     android:text="GOL"/>
-            </LinearLayout>
+            </TableRow>
+
+            </TableLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -406,40 +431,59 @@
                     android:textColor="#fff"
                     />
             </LinearLayout>
-            <LinearLayout
+            <TableLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#E2EBE5"
                 android:orientation="horizontal">
+                <TableRow android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="JUGADOR/A"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:textSize="13dp"
-                    android:gravity="center"
-                    android:layout_marginLeft="145dp"
-                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="13dp"
-                    android:textColor="#000"
-                    android:layout_marginLeft="85dp"
-                    android:text="EVENTOS"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="13dp"
-                    android:textColor="#000"
-                    android:text="GOL"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="DORSAL"
+                        android:textStyle="bold"
+
+                        android:textColor="#000"
+                        android:textSize="13dp"
+
+                        android:gravity="right"
+                        android:layout_gravity="right"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="JUGADOR/A"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="13dp"
+
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="13dp"
+                        android:textColor="#000"
+                        android:layout_gravity="right"
+                        android:text="EVENTOS"/>
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="13dp"
+                        android:textColor="#000"
+                        android:text="GOL"/>
+                </TableRow>
+
+            </TableLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -450,6 +494,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:id="@+id/enviaralineacion"
                 android:layout_marginBottom="20dp"
                 android:background="#369F01"
                 android:text="Enviar Alineaciones"

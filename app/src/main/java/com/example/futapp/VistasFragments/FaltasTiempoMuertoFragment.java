@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.futapp.Adaptadores.PagerAdapterFaltasyTM;
-import com.example.futapp.Adaptadores.PagerAdapterJugadores;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;
 import com.google.android.material.tabs.TabLayout;

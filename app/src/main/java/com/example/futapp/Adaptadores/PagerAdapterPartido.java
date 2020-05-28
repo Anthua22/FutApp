@@ -2,14 +2,12 @@ package com.example.futapp.Adaptadores;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
 import com.example.futapp.VistasFragments.FaltasTiempoMuertoFragment;
 import com.example.futapp.VistasFragments.IncidenciasFragment;
-import com.example.futapp.VistasFragments.JugadoresFragment;
 import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 import com.example.futapp.VistasFragments.StaffsFragment;

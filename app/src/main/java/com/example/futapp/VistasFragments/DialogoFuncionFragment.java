@@ -46,6 +46,8 @@ public class DialogoFuncionFragment extends DialogFragment {
         dorsales = new ArrayList<>();
     }
 
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

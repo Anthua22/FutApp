@@ -27,34 +27,74 @@ public class InformacionPartidoFragment extends DialogFragment {
         return informacionPartidoFragment;
     }
 
-
-    public void pasandoDatos(String text){
+    public static InformacionPartidoFragment newinsTanceAlineacion(String text){
+        InformacionPartidoFragment informacionPartidoFragment = new InformacionPartidoFragment();
         Bundle b = new Bundle();
-        b.putString("resultado",text);
-        this.setArguments(b);
+        b.putString("alineacion",text);
+        informacionPartidoFragment.setArguments(b);
+        return informacionPartidoFragment;
     }
+
+    public static InformacionPartidoFragment newIntanceEvento(String text){
+        InformacionPartidoFragment informacionPartidoFragment = new InformacionPartidoFragment();
+        Bundle b = new Bundle();
+        b.putString("evento",text);
+        informacionPartidoFragment.setArguments(b);
+        return informacionPartidoFragment;
+    }
+
+    public static InformacionPartidoFragment newIntanceGol(String text){
+        InformacionPartidoFragment informacionPartidoFragment = new InformacionPartidoFragment();
+        Bundle b = new Bundle();
+        b.putString("gol",text);
+        informacionPartidoFragment.setArguments(b);
+        return informacionPartidoFragment;
+    }
+
+
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        if(savedInstanceState!=null){
+        /*if(savedInstanceState!=null){
             String result =  savedInstanceState.getString("resultado");
             String suspension = savedInstanceState.getString("suspension");
-            if(suspension.length()>0){
-                textoresultado.setText(suspension+","+result);
+            String alineacion = savedInstanceState.getString("alineacion");
+            if(suspension!=null || result!=null){
+                if(suspension.length()>0){
+                    textoresultado.setText(suspension+","+result);
+                }
+                textoresultado.setText(result);
             }
-            textoresultado.setText(result);
-        }
+            if(alineacion!=null){
+                textoresultado.setText(alineacion);
+            }
+
+        }*/
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.enviarinformacion, null);
         textoresultado = view.findViewById(R.id.resultadoooo);
         String resulta= this.getArguments().getString("resultado");
         String suspen = this.getArguments().getString("suspension");
-        if(suspen.length()>0){
-            textoresultado.setText(suspen+","+resulta);
-        }else{
+        String alineacion = this.getArguments().getString("alineacion");
+        String goles = this.getArguments().getString("gol");
+        String motivos = this.getArguments().getString("evento");
+        if(suspen!=null || resulta!=null){
+            if(suspen.length()>0){
+                textoresultado.setText(suspen+","+resulta);
+            }
             textoresultado.setText(resulta);
+        }
+        if(alineacion!=null){
+            textoresultado.setText(alineacion);
+        }
+
+        if(motivos!=null){
+            textoresultado.setText(motivos);
+        }
+        if(goles!=null){
+            textoresultado.setText(goles);
         }
 
 
