@@ -10,6 +10,7 @@ import com.example.futapp.VistasFragments.DatosBasicosFragment;
 import com.example.futapp.VistasFragments.FaltasTiempoMuertoFragment;
 import com.example.futapp.VistasFragments.IncidenciasFragment;
 import com.example.futapp.VistasFragments.JugadoresFragment;
+import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 import com.example.futapp.VistasFragments.StaffsFragment;
 
@@ -33,7 +34,7 @@ public class PagerAdapterPartido extends FragmentStatePagerAdapter {
                 ResultadoPartidoFragment resultadoPartidoFragment = new ResultadoPartidoFragment(partidos);
                 return  resultadoPartidoFragment;
             case 2:
-                JugadoresFragment jugadoresFragment = new JugadoresFragment(partidos);
+                JugadoresLocalesVisitantesFragment jugadoresFragment =new JugadoresLocalesVisitantesFragment(partidos);
                 return jugadoresFragment;
             case 3:
                 StaffsFragment staffsFragment = new StaffsFragment(partidos);

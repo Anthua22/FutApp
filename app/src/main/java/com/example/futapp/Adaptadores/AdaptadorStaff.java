@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.futapp.ClasesPojos.Staffs;
 import com.example.futapp.Holders.HolderStaffs;
 import com.example.futapp.R;
-import com.example.futapp.Servicios.onAsisteStaffClickListener;
+import com.example.futapp.Servicios.OnAsisteStaffClickListener;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class AdaptadorStaff extends RecyclerView.Adapter implements View.OnClick
     List<Staffs> staffs;
     View.OnClickListener listener;
     HolderStaffs holderStaffs;
-    onAsisteStaffClickListener onAsisteStaffClickListener;
+    OnAsisteStaffClickListener onAsisteStaffClickListener;
 
     public AdaptadorStaff(Context context, List<Staffs> staffs) {
         this.context = context;
@@ -38,7 +38,7 @@ public class AdaptadorStaff extends RecyclerView.Adapter implements View.OnClick
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.staffplantilla, parent,false);
         holderStaffs = new HolderStaffs(view, context);
         view.setOnClickListener(this);
-        holderStaffs.setOnAsisteStaffClickListener(new onAsisteStaffClickListener() {
+        holderStaffs.setOnAsisteStaffClickListener(new OnAsisteStaffClickListener() {
             @Override
             public void onAsisteClick(Staffs staffs) {
                 onAsisteStaffClickListener.onAsisteClick(staffs);
@@ -47,7 +47,7 @@ public class AdaptadorStaff extends RecyclerView.Adapter implements View.OnClick
         return holderStaffs;
     }
 
-    public void setClickSwitchlistener(onAsisteStaffClickListener listener){
+    public void setClickSwitchlistener(OnAsisteStaffClickListener listener){
         if(listener != null) onAsisteStaffClickListener =listener;
     }
 

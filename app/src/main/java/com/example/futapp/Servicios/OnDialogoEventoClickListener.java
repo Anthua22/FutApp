@@ -2,6 +2,6 @@ package com.example.futapp.Servicios;
 
 import com.example.futapp.ClasesPojos.Jugadores;
 
-public interface onDialogoEventoClickListener {
+public interface OnDialogoEventoClickListener {
     void onEventoClick(Jugadores jugadores);
 }

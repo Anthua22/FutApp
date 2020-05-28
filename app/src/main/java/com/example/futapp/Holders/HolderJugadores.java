@@ -3,7 +3,6 @@ package com.example.futapp.Holders;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.R;
-import com.example.futapp.Servicios.onDialogoEventoClickListener;
-import com.example.futapp.Servicios.onDialogoFuncionClickListener;
-import com.example.futapp.Servicios.onDialogoGolClickListener;
+import com.example.futapp.Servicios.OnDialogoEventoClickListener;
+import com.example.futapp.Servicios.OnDialogoFuncionClickListener;
+import com.example.futapp.Servicios.OnDialogoGolClickListener;
 
 public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -23,9 +22,9 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
     TextView dialgofuncion, nombre,categoria, dialogo_evento, dialogo_gol;
     CardView cardView;
     Context context;
-    onDialogoFuncionClickListener listenerfuncion;
-    onDialogoEventoClickListener listenerevento;
-    onDialogoGolClickListener listenergol;
+    OnDialogoFuncionClickListener listenerfuncion;
+    OnDialogoEventoClickListener listenerevento;
+    OnDialogoGolClickListener listenergol;
     Jugadores jugadores;
 
     public HolderJugadores(@NonNull View itemView, Context context) {
@@ -59,15 +58,15 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
 
     }
 
-    public void setClickfuncionDialgo(onDialogoFuncionClickListener listener){
+    public void setClickfuncionDialgo(OnDialogoFuncionClickListener listener){
         if(listener!=null) this.listenerfuncion = listener;
     }
 
-    public void setClickeventoDialogo(onDialogoEventoClickListener listener){
+    public void setClickeventoDialogo(OnDialogoEventoClickListener listener){
         if(listener!=null)this.listenerevento = listener;
     }
 
-    public void setClickgolDialogo(onDialogoGolClickListener listener){
+    public void setClickgolDialogo(OnDialogoGolClickListener listener){
         if(listener!=null)this.listenergol = listener;
     }
     @Override

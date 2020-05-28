@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
-import com.example.futapp.VistasFragments.JugadoresLocalesFragment;
+import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 
 public class PagerAdapterJugadores extends FragmentStatePagerAdapter {
     int numeroPestañsa;
@@ -20,10 +20,10 @@ public class PagerAdapterJugadores extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                JugadoresLocalesFragment jugadoresLocalesFragment = new JugadoresLocalesFragment(partidos);
-                return  jugadoresLocalesFragment;
+                JugadoresLocalesVisitantesFragment jugadoresLocalesVisitantesFragment = new JugadoresLocalesVisitantesFragment(partidos);
+                return jugadoresLocalesVisitantesFragment;
             case 1 :
-                JugadoresLocalesFragment jugadoresLocalesFragment1 = new JugadoresLocalesFragment(partidos);
+                JugadoresLocalesVisitantesFragment jugadoresLocalesFragment1 = new JugadoresLocalesVisitantesFragment(partidos);
                 return  jugadoresLocalesFragment1;
         }
         return null;
@@ -33,4 +33,6 @@ public class PagerAdapterJugadores extends FragmentStatePagerAdapter {
     public int getCount() {
         return numeroPestañsa;
     }
+
+
 }

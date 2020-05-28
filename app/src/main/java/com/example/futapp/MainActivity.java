@@ -3,16 +3,11 @@ package com.example.futapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.futapp.Servicios.OnSelectedItemListener;
 import com.example.futapp.VistasFragments.InformacionPartidoFragment;
 import com.example.futapp.VistasFragments.LoginFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;

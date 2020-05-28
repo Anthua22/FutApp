@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Equipos;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.R;
-import com.example.futapp.Servicios.OnSelectedItemListener;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 
 import java.util.List;

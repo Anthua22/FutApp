@@ -20,7 +20,7 @@ import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.ClasesPojos.Staffs;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
-import com.example.futapp.Servicios.onAsisteStaffClickListener;
+import com.example.futapp.Servicios.OnAsisteStaffClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class StaffsLocalesFragment extends Fragment {
                 posicion = recyclerView.getChildAdapterPosition(v);
             }
         });
-        adaptadorStaff.setClickSwitchlistener(new onAsisteStaffClickListener() {
+        adaptadorStaff.setClickSwitchlistener(new OnAsisteStaffClickListener() {
             @Override
             public void onAsisteClick(Staffs staffs) {
 

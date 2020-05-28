@@ -2,7 +2,6 @@ package com.example.futapp.Holders;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -13,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.futapp.ClasesPojos.Staffs;
 import com.example.futapp.R;
-import com.example.futapp.Servicios.onAsisteStaffClickListener;
+import com.example.futapp.Servicios.OnAsisteStaffClickListener;
 
 public class HolderStaffs extends RecyclerView.ViewHolder implements View.OnClickListener{
     ImageView foto;
     TextView nombre, funcion;
     Switch asiste;
     Context context;
-    onAsisteStaffClickListener onAsisteStaffClickListener;
+    OnAsisteStaffClickListener onAsisteStaffClickListener;
     Staffs staffs;
     public HolderStaffs(@NonNull View itemView, Context context) {
         super(itemView);
@@ -44,7 +43,7 @@ public class HolderStaffs extends RecyclerView.ViewHolder implements View.OnClic
         this.staffs = staffs;
     }
 
-    public void setOnAsisteStaffClickListener(onAsisteStaffClickListener onAsisteStaffClickListener){
+    public void setOnAsisteStaffClickListener(OnAsisteStaffClickListener onAsisteStaffClickListener){
         if(onAsisteStaffClickListener!=null) this.onAsisteStaffClickListener = onAsisteStaffClickListener;
     }
     @Override

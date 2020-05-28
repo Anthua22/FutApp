@@ -6,8 +6,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.VistasFragments.FaltasTMLocalesFragment;
-import com.example.futapp.VistasFragments.FaltasTiempoMuertoFragment;
-import com.example.futapp.VistasFragments.JugadoresLocalesFragment;
 
 public class PagerAdapterFaltasyTM extends FragmentStatePagerAdapter {
     int numeroPestañsa;

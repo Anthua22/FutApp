@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
-import com.example.futapp.VistasFragments.JugadoresLocalesFragment;
 import com.example.futapp.VistasFragments.StaffsLocalesFragment;
 
 public class PagerAdapterStaffs extends FragmentStatePagerAdapter {
