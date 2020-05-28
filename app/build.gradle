@@ -36,6 +36,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.itextpdf:itextg:5.5.10'
-    implementation 'com.itextpdf.tool:xmlworker:5.5.10'
+
 }

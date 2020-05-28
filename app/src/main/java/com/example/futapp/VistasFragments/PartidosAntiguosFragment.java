@@ -1,6 +1,5 @@
 package com.example.futapp.VistasFragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,17 +27,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PartidosNuevosTabFragment extends Fragment {
-
+public class PartidosAntiguosFragment extends Fragment {
     RecyclerView recyclerView;
     AdaptadorPartidosNuevos adaptadorPartidosNuevos;
     List<Partidos> partidos;
     Arbitros actual;
     ServicioApiRestUtilidades servicioApiRestUtilidades;
 
-
-
-    public PartidosNuevosTabFragment(Arbitros actual) {
+    public PartidosAntiguosFragment(Arbitros actual) {
         this.actual = actual;
     }
 
@@ -80,12 +76,13 @@ public class PartidosNuevosTabFragment extends Fragment {
             public void onResponse(Call<List<Partidos>> call, Response<List<Partidos>> response) {
                 if(response.isSuccessful()){
                     for(Partidos x : response.body()){
-                        if(x.getArbitroprincipal() == actual.getId() || x.getArbitrosecundario() == actual.getId() || x.getCronometrador() == actual.getId() || x.getTercer_arbitro() == actual.getId() )
+                        if(x.getArbitroprincipal() == actual.getId() || x.getArbitrosecundario() == actual.getId() || x.getCronometrador() == actual.getId() || x.getTercer_arbitro() == actual.getId())
                         {
-                            if(x.getDisputado() ==0){
+                            if(x.getDisputado() ==1){
                                 partidos.add(x);
                                 adaptadorPartidosNuevos.notifyDataSetChanged();
                             }
+
                         }
 
                     }
@@ -99,7 +96,6 @@ public class PartidosNuevosTabFragment extends Fragment {
         });
 
     }
-
 
 
 

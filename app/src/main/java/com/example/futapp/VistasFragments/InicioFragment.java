@@ -37,6 +37,7 @@ public class InicioFragment extends Fragment {
     Arbitros arbitrosactual;
     TextView categoria, nombre;
     ImageView fotoarbitro;
+    ViewPager viewPager;
 
 
 
@@ -91,15 +92,35 @@ public class InicioFragment extends Fragment {
         tabLayout =view.findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Nuevos"));
         tabLayout.addTab(tabLayout.newTab().setText("Pasados"));
-        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        viewPager = view.findViewById(R.id.viewpager);
         PagerAdapterInicio pagerAdapterInicio = new PagerAdapterInicio(getFragmentManager(), tabLayout.getTabCount(),arbitrosactual);
         viewPager.setAdapter(pagerAdapterInicio);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
+        cambioTabs();
 
 
         return  view;
     }
+
+    void cambioTabs(){
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

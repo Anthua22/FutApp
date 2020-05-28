@@ -1,43 +1,37 @@
 package com.example.futapp;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.view.View;
-import android.widget.Toast;
-
+import com.example.futapp.ClasesPojos.Arbitros;
+import com.example.futapp.ClasesPojos.Partidos;
+import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
 import com.example.futapp.VistasFragments.DialogoEventoFragment;
 import com.example.futapp.VistasFragments.DialogoGolFragment;
 import com.example.futapp.VistasFragments.FaltasTMLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.IncidenciasFragment;
-import com.example.futapp.VistasFragments.InformacionPartidoFragment;
 import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.LoginFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 import com.example.futapp.VistasFragments.StaffsLocalesVisitantesFragment;
 
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements ResultadoPartidoFragment.EnviarInformacion, JugadoresLocalesVisitantesFragment.EnviarAlineaciones, DialogoEventoFragment.EnviarSanciones, DialogoGolFragment.EnviarGolesInterface, StaffsLocalesVisitantesFragment.EnviarAsistenciaStaff,
         FaltasTMLocalesVisitantesFragment.EnviarFaltasYTM, IncidenciasFragment.EnviarIncidencias, DatosBasicosFragment.EnviarDatosdelPartido {
-
 
     String text;
     static String encabezado;
@@ -58,15 +52,22 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
         FT.commit();
     }
 
+    public static String obtenerNombreArchivo(){
+        if(encabezado!=null){
+            String[] items = encabezado.split("\n");
+            return items[0];
+        }
+        return null;
+    }
+
     public static void generaArchivo(Context context){
 
-        String archivo ="acta.txt";
         FileOutputStream FO;
 
 
         try {
             if(encabezado!=null){
-                FO = context.openFileOutput(archivo,Context.MODE_PRIVATE);
+                FO = context.openFileOutput(obtenerNombreArchivo(),Context.MODE_PRIVATE);
                 FO.write(encabezado.getBytes());
                 if(resultado !=null){
                     String result;
@@ -175,6 +176,34 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
             result += propiedadesstaffs[0]+" como "+propiedadesstaffs[1]+'\n';
         }
         return result;
+    }
+
+    public static boolean cerrarPartido(Partidos partidos, Context context){
+        if(resultado!=null){
+            partidos.setResultado(resultado);
+            partidos.setDisputado(1);
+            ServicioApiRestUtilidades servicioApiRestUtilidades = new ServicioApiRestUtilidades();
+            Call<Partidos> response =servicioApiRestUtilidades.servicioApiRest.updatePartido(partidos.getIdPartido(), partidos);
+            response.enqueue(new Callback<Partidos>() {
+                @Override
+                public void onResponse(Call<Partidos> call, Response<Partidos> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(context, "Partido Actualizado",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Partidos> call, Throwable t) {
+                    Toast.makeText(context, t.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+
+            return true;
+        }
+        return false;
     }
 
     @Override

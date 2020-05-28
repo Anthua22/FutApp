@@ -76,8 +76,6 @@ public class PartidoFragment extends Fragment {
                 try{
                     switch (menuItem.getItemId()){
                         case R.id.cerrarSesion_partido:
-
-
                             Fragment fragment = new LoginFragment();
                             FT.replace(R.id.principal, fragment);
                             FT.commit();
@@ -94,6 +92,17 @@ public class PartidoFragment extends Fragment {
                             break;
                         case R.id.generarpdf:
                             MainActivity.generaArchivo(getActivity());
+                            break;
+                        case R.id.cerrarpartido:
+                            if(MainActivity.cerrarPartido(partidoactual,getActivity())){
+                                Toast.makeText(getActivity(),"Partido Finalizado",Toast.LENGTH_SHORT).show();
+                                InicioFragment inicioFragment = new InicioFragment(arbitros);
+                                FT.replace(R.id.principal, inicioFragment);
+                                FT.commit();
+                            }else{
+                                Toast.makeText(getActivity(),"Faltan datos para cerrar el partido",Toast.LENGTH_SHORT).show();
+                            }
+
                         default:
                             throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
                     }

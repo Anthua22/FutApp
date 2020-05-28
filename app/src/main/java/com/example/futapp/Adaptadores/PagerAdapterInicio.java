@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Arbitros;
+import com.example.futapp.VistasFragments.PartidosAntiguosFragment;
 import com.example.futapp.VistasFragments.PartidosNuevosTabFragment;
 
 public class PagerAdapterInicio extends FragmentStatePagerAdapter {
@@ -27,8 +28,8 @@ public class PagerAdapterInicio extends FragmentStatePagerAdapter {
                 return  partidosNuevosTabFragment;
 
             case 1:
-                PartidosNuevosTabFragment partidosNuevosTabFragment1 = new PartidosNuevosTabFragment(actual);
-                return  partidosNuevosTabFragment1;
+                PartidosAntiguosFragment partidosAntiguosFragment = new PartidosAntiguosFragment(actual);
+                return  partidosAntiguosFragment;
         }
         return null;
     }

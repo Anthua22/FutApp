@@ -99,6 +99,13 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
 
     void clicksItemsRecycler(){
 
+        adaptadorJugadores.onClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                posicionRecyclerlocal = recyclerView.getChildAdapterPosition(v);
+            }
+        });
+
         adaptadorJugadores.setClickeventoDialogo(new OnDialogoEventoClickListener() {
             @Override
             public void onEventoClick(Jugadores jugadores) {
