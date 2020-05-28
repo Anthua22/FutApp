@@ -10,6 +10,15 @@ public class Staffs implements Serializable {
     String nombre_completo;
     String foto;
     int equipo;
+    boolean asiste;
+
+    public boolean isAsiste() {
+        return asiste;
+    }
+
+    public void setAsiste(boolean asiste) {
+        this.asiste = asiste;
+    }
 
     public String getFoto() {
         return foto;
@@ -88,7 +97,9 @@ public class Staffs implements Serializable {
                 ", fecha_nacimiento='" + fecha_nacimiento + '\'' +
                 ", dni='" + dni + '\'' +
                 ", nombre_completo='" + nombre_completo + '\'' +
+                ", foto='" + foto + '\'' +
                 ", equipo=" + equipo +
+                ", asiste=" + asiste +
                 '}';
     }
 }

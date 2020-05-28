@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
-import com.example.futapp.VistasFragments.FaltasTiempoMuertoFragment;
+import com.example.futapp.VistasFragments.FaltasTMLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.IncidenciasFragment;
 import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
-import com.example.futapp.VistasFragments.StaffsFragment;
+import com.example.futapp.VistasFragments.StaffsLocalesVisitantesFragment;
 
 public class PagerAdapterPartido extends FragmentStatePagerAdapter {
     int numeroPestaña;
@@ -35,10 +35,10 @@ public class PagerAdapterPartido extends FragmentStatePagerAdapter {
                 JugadoresLocalesVisitantesFragment jugadoresFragment =new JugadoresLocalesVisitantesFragment(partidos);
                 return jugadoresFragment;
             case 3:
-                StaffsFragment staffsFragment = new StaffsFragment(partidos);
+                StaffsLocalesVisitantesFragment staffsFragment = new StaffsLocalesVisitantesFragment(partidos);
                 return staffsFragment;
             case 4:
-                FaltasTiempoMuertoFragment faltasTiempoMuertoFragment = new FaltasTiempoMuertoFragment(partidos);
+                FaltasTMLocalesVisitantesFragment faltasTiempoMuertoFragment = new FaltasTMLocalesVisitantesFragment(partidos);
                 return  faltasTiempoMuertoFragment;
             case 5:
                 IncidenciasFragment incidenciasFragment = new IncidenciasFragment();

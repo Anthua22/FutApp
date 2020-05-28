@@ -10,12 +10,15 @@ import android.os.Bundle;
 
 import com.example.futapp.VistasFragments.DialogoEventoFragment;
 import com.example.futapp.VistasFragments.DialogoGolFragment;
+import com.example.futapp.VistasFragments.FaltasTMLocalesVisitantesFragment;
+import com.example.futapp.VistasFragments.IncidenciasFragment;
 import com.example.futapp.VistasFragments.InformacionPartidoFragment;
 import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.LoginFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
+import com.example.futapp.VistasFragments.StaffsLocalesVisitantesFragment;
 
-public class MainActivity extends AppCompatActivity implements ResultadoPartidoFragment.EnviarInformacion, JugadoresLocalesVisitantesFragment.EnviarAlineaciones, DialogoEventoFragment.EnviarSanciones, DialogoGolFragment.EnviarGolesInterface {
+public class MainActivity extends AppCompatActivity implements ResultadoPartidoFragment.EnviarInformacion, JugadoresLocalesVisitantesFragment.EnviarAlineaciones, DialogoEventoFragment.EnviarSanciones, DialogoGolFragment.EnviarGolesInterface, StaffsLocalesVisitantesFragment.EnviarAsistenciaStaff, FaltasTMLocalesVisitantesFragment.EnviarFaltasYTM, IncidenciasFragment.EnviarIncidencias {
 
     String text;
 
@@ -60,6 +63,24 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
     @Override
     public void EnviarGoles(String te) {
         DialogFragment dialogFragment = InformacionPartidoFragment.newIntanceGol(te);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+    }
+
+    @Override
+    public void EnviarStaff(String str) {
+        DialogFragment dialogFragment = InformacionPartidoFragment.newIntanceGol(str);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+    }
+
+    @Override
+    public void EnvioFaltasyTiempos(String st) {
+        DialogFragment dialogFragment = InformacionPartidoFragment.newIntanceGol(st);
+        dialogFragment.show(getSupportFragmentManager(),"resultado");
+    }
+
+    @Override
+    public void EnvioIncidencias(String inc) {
+        DialogFragment dialogFragment = InformacionPartidoFragment.newIntanceGol(inc);
         dialogFragment.show(getSupportFragmentManager(),"resultado");
     }
 }
