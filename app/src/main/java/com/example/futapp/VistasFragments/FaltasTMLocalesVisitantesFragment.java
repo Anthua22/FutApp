@@ -199,24 +199,24 @@ public class FaltasTMLocalesVisitantesFragment extends Fragment {
     String recogerFaltasyTiempoMuertos(){
         String resultado="";
         if(faltaslocalpri!=null){
-            resultado += "EquipoLocalPrimeraParte:"+faltaslocalpri;
+            resultado += "Faltas EquipoLocal Primera Parte:"+faltaslocalpri;
             if(primeraparte.isChecked()){
                 resultado+=" mas tiempo muerto";
             }
 
         } if(faltasvisitantespri!=null){
 
-            resultado+="EquipoVisitantePrimeraParte:"+faltasvisitantespri;
+            resultado+="Faltas EquipoVisitante Primera Parte:"+faltasvisitantespri;
             if(primerapartevisitante.isChecked()){
                 resultado+=" mas tiempo muerto";
             }
         } if (faltaslocalessegu!=null){
-            resultado+="EquipoLocalSegundaParte:"+faltaslocalessegu;
+            resultado+="Faltas EquipoLocal Segunda Parte:"+faltaslocalessegu;
             if(segundaparte.isChecked()){
                 resultado+=" mas tiempo muerto";
             }
         } if(faltasvisitantessegu!=null){
-            resultado+="EquipoVisitanteSegundaParte:"+faltasvisitantessegu;
+            resultado+="Faltas EquipoVisitante Segunda Parte::"+faltasvisitantessegu;
             if(segundopartevisitante.isChecked()){
                 resultado+=" mas tiempo muerto";
             }

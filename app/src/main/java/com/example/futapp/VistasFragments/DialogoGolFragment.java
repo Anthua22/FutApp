@@ -171,6 +171,8 @@ public class DialogoGolFragment extends DialogFragment {
     String recogerGoles(){
         String resultado ="";
         String minuto="";
+
+
         if(golesedit.size()>0 && penaltis.size()>0)
         {
             resultado ="El jugador "+jugadores.getNombre_completo()+" ha marcado los siguientes goles:\n";

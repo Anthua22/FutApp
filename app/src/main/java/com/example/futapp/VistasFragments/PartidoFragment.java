@@ -25,6 +25,7 @@ import com.example.futapp.Adaptadores.PagerAdapterPartido;
 import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.ClasesPojos.Equipos;
 import com.example.futapp.ClasesPojos.Partidos;
+import com.example.futapp.MainActivity;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.google.android.material.navigation.NavigationView;
@@ -72,7 +73,7 @@ public class PartidoFragment extends Fragment {
                 menuItem.setChecked(true);
                 FragmentManager FM  = getFragmentManager();
                 FragmentTransaction FT = FM.beginTransaction();
-                /*try{*/
+                try{
                     switch (menuItem.getItemId()){
                         case R.id.cerrarSesion_partido:
 
@@ -91,12 +92,14 @@ public class PartidoFragment extends Fragment {
                             FT.replace(R.id.principal, fragment2,"resultadofragment");
                             FT.commit();
                             break;
+                        case R.id.generarpdf:
+                            MainActivity.generaArchivo(getActivity());
                         default:
                             throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
                     }
-                /*}catch (Exception ex){
+                }catch (Exception ex){
                     Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_SHORT).show();
-                }*/
+                }
 
 
 

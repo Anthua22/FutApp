@@ -1,10 +1,13 @@
 package com.example.futapp.VistasFragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -42,6 +45,12 @@ public class DatosBasicosFragment extends Fragment {
     TextView arbitros_principales;
     TextView arbitros_asitentes;
     ArrayAdapter<String> adapter;
+    Button enviar;
+    EnviarDatosdelPartido enviarDatosdelPartido;
+    String delegado;
+    public interface EnviarDatosdelPartido{
+        void EnviarDatosBasicos(String st);
+    }
 
     public DatosBasicosFragment(Partidos partidos)
     {
@@ -53,7 +62,23 @@ public class DatosBasicosFragment extends Fragment {
         View view = inflater.inflate(R.layout.datos_partido,container,false);
         asignarID(view);
         asignarValores();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                delegado = delegados.get(position);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviarDatosdelPartido.EnviarDatosBasicos(recogerDatos());
+            }
+        });
         return view;
     }
 
@@ -70,10 +95,27 @@ public class DatosBasicosFragment extends Fragment {
         arbitros_asitentes = view.findViewById(R.id.arbiasistentes);
         arbitros_principales = view.findViewById(R.id.arbiprinciapl);
         asistentes = view.findViewById(R.id.asistentes);
+        enviar = view.findViewById(R.id.enviardatosbasicos);
         delegados = new ArrayList<>();
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_gallery_item, delegados);
         spinner.setAdapter(adapter);
 
+    }
+
+    String recogerDatos(){
+        String resultado = equipolocal.getText().toString()+" vs "+equipovisitante.getText().toString()+'\n';
+        resultado+="Dirección del encuentro: "+partidos.getDireccion_encuentro()+"\n";
+        resultado+="Jornada: "+partidos.getJornada()+'\n';
+        if(delegado!=null){
+            resultado+="Delegado: "+delegado+'\n';
+        }
+        resultado+="Fecha Encuentro: "+fecha.getText().toString()+'\n';
+        resultado+="Hora Encuentro: "+hora.getText().toString()+'\n';
+        resultado+="Arbitros: "+arbitros_principales.getText().toString()+'\n';
+        if(arbitros_asitentes.getText().toString().length()>0){
+            resultado+="Asistentes: "+arbitros_asitentes.getText().toString()+'\n';
+        }
+        return  resultado;
     }
 
     void asignarValores(){
@@ -176,5 +218,18 @@ public class DatosBasicosFragment extends Fragment {
             }
         });
 
+
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            enviarDatosdelPartido = (EnviarDatosdelPartido) context;
+
+        }catch (ClassCastException e){
+            Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 }

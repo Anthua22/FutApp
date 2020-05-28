@@ -205,7 +205,7 @@ public class StaffsLocalesVisitantesFragment extends Fragment {
     String recuperarAsitencia(){
         String resultado="";
         if(staffsList.size()>0){
-            resultado ="EquipoLocal:";
+            resultado ="";
             for(Staffs x : staffsList){
                 if(x.isAsiste()){
                     resultado+=x.getNombre_completo()+','+x.getCargo()+'\n';
@@ -213,7 +213,7 @@ public class StaffsLocalesVisitantesFragment extends Fragment {
             }
         }
         if(staffsListvisitantes.size()>0){
-            resultado+="EquipoVisitante:";
+            resultado+=":";
             for(Staffs x : staffsListvisitantes){
                 if(x.isAsiste()){
                     resultado+=x.getNombre_completo()+','+x.getCargo()+'\n';

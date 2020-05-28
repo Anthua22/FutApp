@@ -273,17 +273,17 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
     }
 
     private String obtenerAlicneaciones(){
-        String resultado ="Locales: ";
+        String resultado ="";
         for(Jugadores x: jugadoreslocalesList ){
             if(x.isTitular() || x.isSuplente()){
-                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero();
+                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero()+'\n';
             }
         }
 
-        resultado+="\nVisitantes: ";
+        resultado+=":";
         for (Jugadores x: jugadoresvisitanteList){
             if(x.isTitular() || x.isSuplente()){
-                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero();
+                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero()+'\n';
 
             }
         }
