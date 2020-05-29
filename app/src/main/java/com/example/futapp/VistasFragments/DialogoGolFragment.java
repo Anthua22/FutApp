@@ -64,6 +64,8 @@ public class DialogoGolFragment extends DialogFragment {
         builder.setView(view).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //Cuando se precione el boton aceptar del botón del dialogo se va enviar la información al activity
+                //en este caso serán los goles marcados
                 enviarGolesInterface.EnviarGoles(recogerGoles());
             }
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -125,8 +127,9 @@ public class DialogoGolFragment extends DialogFragment {
                 t1.setText(i+"");
                 t1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
-                EditText editText = new EditText(getActivity());
+                EditText editText = new EditText(getActivity());;
                 editText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                editText.setInputType(Types.NUMERIC);
                 golesedit.add(editText);
 
                 Switch switc = new Switch(getActivity());
@@ -190,6 +193,9 @@ public class DialogoGolFragment extends DialogFragment {
 
     @Override
     public void onAttach(Context context) {
+
+        //Se sobrescribe este método para la enviar la información y solo la recibirá el activity que tenga
+        //implementado su interfaz
         super.onAttach(context);
         try {
             enviarGolesInterface = (EnviarGolesInterface) context;

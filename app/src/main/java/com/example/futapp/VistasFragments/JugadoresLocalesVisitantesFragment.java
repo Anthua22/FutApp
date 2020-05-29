@@ -27,6 +27,7 @@ import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.example.futapp.Servicios.OnDialogoEventoClickListener;
 import com.example.futapp.Servicios.OnDialogoFuncionClickListener;
 import com.example.futapp.Servicios.OnDialogoGolClickListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
 
     TextView nombreequipolocal, nommbreequipovisitante;
     ImageView local, visitante;
-    Button enviar;
+    FloatingActionButton enviar;
 
     int posicionRecyclerlocal, posicionrecyclervisitante;
     View view;
@@ -316,6 +317,26 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
 
     }
 
+
+    void controlarscroll(){
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    enviar.show();
+                }
+                super.onScrollStateChanged(recyclerView,newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(dy >0  || dy<0 && enviar.isShown()){
+                    enviar.hide();
+                }
+
+            }
+        });
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

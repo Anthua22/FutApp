@@ -56,7 +56,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Usuario"
-                android:text="y2806662f"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +70,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Contraseña"
-                android:text="contraseña"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 

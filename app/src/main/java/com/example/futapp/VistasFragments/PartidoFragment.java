@@ -85,13 +85,9 @@ public class PartidoFragment extends Fragment {
                             dialogFragment.show(getFragmentManager(),"configurarpar");
 
                             break;
-                        case R.id.infomacion:
-                            Fragment fragment2 = new InformacionPartidoFragment();
-                            FT.replace(R.id.principal, fragment2,"resultadofragment");
-                            FT.commit();
-                            break;
+
                         case R.id.generarpdf:
-                            MainActivity.generaArchivo(getActivity());
+                            MainActivity.generaArchivo(getActivity(), partidoactual);
                             break;
                         case R.id.cerrarpartido:
                             if(MainActivity.cerrarPartido(partidoactual,getActivity())){
