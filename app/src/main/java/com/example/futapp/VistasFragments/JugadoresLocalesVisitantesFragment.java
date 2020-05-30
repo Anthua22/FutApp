@@ -326,7 +326,7 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
             }
         }
 
-        return (contadorlocales>=1 && contadorvisitantes>=3);
+        return (contadorlocales>=3 && contadorvisitantes>=3);
 
     }
 
