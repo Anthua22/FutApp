@@ -273,18 +273,39 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
     }
 
     private String obtenerAlicneaciones(){
-        String resultado ="";
+        String resultado ="Equipo Local:\n";
         for(Jugadores x: jugadoreslocalesList ){
             if(x.isTitular() || x.isSuplente()){
-                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero()+'\n';
+                resultado += x.getNombre_completo()+" con el dorsal "+x.getDorsal();
+                if(x.isTitular()){
+                    resultado+=" juega como titular";
+                }else{
+                    resultado+=" juega como suplente";
+                }
+                if(x.isPortero()){
+                    resultado+= " como portero";
+                }if(x.isCapitan()){
+                    resultado+=", y es el capitán del equipo local";
+                }
+                resultado+='\n';
             }
         }
 
-        resultado+=":";
+        resultado+="Equipo Visitante:\n";
         for (Jugadores x: jugadoresvisitanteList){
             if(x.isTitular() || x.isSuplente()){
-                resultado += x.getNombre_completo()+','+x.getDorsal()+','+x.isTitular()+','+x.isSuplente()+','+x.isCapitan()+','+x.isPortero()+'\n';
-
+                resultado += x.getNombre_completo()+" con el dorsal "+x.getDorsal();
+                if(x.isTitular()){
+                    resultado+=" juega como titular";
+                }else{
+                    resultado+=" juega como suplente";
+                }
+                if(x.isPortero()){
+                    resultado+= " como portero";
+                }if(x.isCapitan()){
+                    resultado+=", y es el capitán del equipo visitante";
+                }
+                resultado+='\n';
             }
         }
         return resultado;
@@ -305,30 +326,10 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
             }
         }
 
-        return (contadorlocales>=3 && contadorvisitantes>=3);
+        return (contadorlocales>=1 && contadorvisitantes>=3);
 
     }
 
-
-    void controlarscroll(){
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    enviar.show();
-                }
-                super.onScrollStateChanged(recyclerView,newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if(dy >0  || dy<0 && enviar.isShown()){
-                    enviar.hide();
-                }
-
-            }
-        });
-    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

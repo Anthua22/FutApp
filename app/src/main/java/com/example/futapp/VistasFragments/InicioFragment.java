@@ -53,12 +53,6 @@ public class InicioFragment extends Fragment {
         drawerLayout = view.findViewById(R.id.drawer_layout_inicio);
         getActivity().setActionBar(toolbar);
 
-       // actionBar = getActivity().getActionBar();
-     //   actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
-       // actionBar.setDisplayHomeAsUpEnabled(true);
-
-
-
         NavigationView navigationView = view.findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -79,7 +73,6 @@ public class InicioFragment extends Fragment {
                         DialogFragment dialogFragment = new DialogoConfigurarContraseña(arbitrosactual);
 
                         dialogFragment.show(getFragmentManager(),"configurar");
-                        //Toast.makeText(getActivity(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                         break;
                 }
 

@@ -61,83 +61,7 @@ public class DialogoFuncionFragment extends DialogFragment {
         builder.setView(view).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
              @Override
              public void onClick(DialogInterface dialog, int which) {
-                 if(dorsal.getText().toString().length()>0){
-                     if(!dorsales.contains(Integer.parseInt(dorsal.getText().toString()))){
-                         jugadores.setDorsal(Integer.parseInt(dorsal.getText().toString()));
-                         if(titular.isChecked()){
-                             int numerotitulares = Integer.parseInt(cabecera.get(0).getText().toString());
-                             if(comproQuinteto(numerotitulares)){
-                                 numerotitulares++;
-                                 cabecera.get(0).setText(numerotitulares+"");
-                                 if(jugadores.isSuplente()){
-                                     int numerosuplentes = Integer.parseInt(cabecera.get(1).getText().toString());
-                                     numerosuplentes--;
-
-                                     cabecera.get(1).setText(numerosuplentes+"");
-                                     jugadores.setSuplente(false);
-                                 }
-                                 jugadores.setTitular(true);
-                                 cardView.setCardBackgroundColor(Color.rgb(115,238,156));
-                             }else{
-                                 Toast.makeText(getActivity(), "Ya están puesto los 5 jugadores titulares",Toast.LENGTH_LONG).show();
-                             }
-
-                         }
-                         if(suplente.isChecked()){
-                             int suplentes = Integer.parseInt(cabecera.get(1).getText().toString());
-                             if(jugadores.isTitular()){
-                                 int numerotitulares = Integer.parseInt(cabecera.get(0).getText().toString());
-                                 numerotitulares--;
-                                 cabecera.get(0).setText(numerotitulares+"");
-                                 jugadores.setTitular(false);
-                             }
-                             suplentes++;
-                             cabecera.get(1).setText(suplentes+"");
-                             jugadores.setSuplente(true);
-                             cardView.setCardBackgroundColor(Color.rgb(166,182,171));
-                         }
-                         if(portero.isChecked()){
-                             int numeroporteros = Integer.parseInt(cabecera.get(2).getText().toString());
-                             numeroporteros++;
-                             cabecera.get(2).setText(numeroporteros+"");
-                             jugadores.setPortero(true);
-                         }
-                         if(capitan.isChecked()){
-                             int numerocapitan = Integer.parseInt(cabecera.get(3).getText().toString());
-                             if(numerocapitan<=1){
-                                 numerocapitan++;
-                                 cabecera.get(3).setText(numerocapitan+"");
-                                 jugadores.setCapitan(true);
-                             }else{
-                                 Toast.makeText(getActivity(), "Ya existe un capitán",Toast.LENGTH_LONG).show();
-                             }
-                         }
-                         if(!portero.isChecked() && jugadores.isPortero()){
-                             int numeroporteros = Integer.parseInt(cabecera.get(2).getText().toString());
-                             numeroporteros--;
-                             cabecera.get(2).setText(numeroporteros+"");
-                             jugadores.setPortero(false);
-                         }
-                         if(!capitan.isChecked() && jugadores.isCapitan()){
-                             int numerocapitan = Integer.parseInt(cabecera.get(3).getText().toString());
-                             numerocapitan--;
-                             cabecera.get(3).setText(numerocapitan+"");
-                             jugadores.setCapitan(false);
-                         }
-                         dorsaltext.setText(jugadores.getDorsal()+"");
-
-                     }
-
-                     else{
-                         Toast.makeText(getActivity(), "El dorsal "+dorsal.getText()+" ya está asignado",Toast.LENGTH_SHORT).show();
-                     }
-
-
-                 }else{
-                     Toast.makeText(getActivity(),"Falta por poner el dorsal del jugador/a",Toast.LENGTH_LONG).show();
-                 }
-
-
+                acciones();
 
              }
              }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -165,6 +89,96 @@ public class DialogoFuncionFragment extends DialogFragment {
             }
         });
         return builder.create();
+    }
+
+    void acciones(){
+        if(dorsal.getText().toString().length()>0){
+            if(!dorsales.contains(Integer.parseInt(dorsal.getText().toString()))){
+                jugadores.setDorsal(Integer.parseInt(dorsal.getText().toString()));
+                if(titular.isChecked()){
+                    int numerotitulares = Integer.parseInt(cabecera.get(0).getText().toString());
+                    if(comproQuinteto(numerotitulares)){
+                        if(!jugadores.isTitular()){
+                            numerotitulares++;
+                        }
+
+                        cabecera.get(0).setText(numerotitulares+"");
+                        if(jugadores.isSuplente()){
+                            int numerosuplentes = Integer.parseInt(cabecera.get(1).getText().toString());
+                            numerosuplentes--;
+
+                            cabecera.get(1).setText(numerosuplentes+"");
+                            jugadores.setSuplente(false);
+                        }
+                        jugadores.setTitular(true);
+                        cardView.setCardBackgroundColor(Color.rgb(115,238,156));
+                    }else{
+                        Toast.makeText(getActivity(), "Ya están puesto los 5 jugadores titulares",Toast.LENGTH_LONG).show();
+                    }
+
+                }
+                if(suplente.isChecked()){
+                    int suplentes = Integer.parseInt(cabecera.get(1).getText().toString());
+                    if(jugadores.isTitular()){
+                        int numerotitulares = Integer.parseInt(cabecera.get(0).getText().toString());
+                        numerotitulares--;
+                        cabecera.get(0).setText(numerotitulares+"");
+                        jugadores.setTitular(false);
+                    }
+                    if(!jugadores.isSuplente()){
+                        suplentes++;
+                    }
+                    cabecera.get(1).setText(suplentes+"");
+                    jugadores.setSuplente(true);
+                    cardView.setCardBackgroundColor(Color.rgb(166,182,171));
+                }
+                if(portero.isChecked()){
+                    int numeroporteros = Integer.parseInt(cabecera.get(2).getText().toString());
+                    if(!jugadores.isPortero()){
+                        numeroporteros++;
+                    }
+
+                    cabecera.get(2).setText(numeroporteros+"");
+                    jugadores.setPortero(true);
+                }
+                if(capitan.isChecked()){
+                    int numerocapitan = Integer.parseInt(cabecera.get(3).getText().toString());
+                    if(!jugadores.isCapitan()){
+                        if(numerocapitan<=1){
+                            numerocapitan++;
+                            cabecera.get(3).setText(numerocapitan+"");
+                            jugadores.setCapitan(true);
+                        }else{
+                            Toast.makeText(getActivity(), "Ya existe un capitán",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                }
+                if(!portero.isChecked() && jugadores.isPortero()){
+                    int numeroporteros = Integer.parseInt(cabecera.get(2).getText().toString());
+                    numeroporteros--;
+                    cabecera.get(2).setText(numeroporteros+"");
+                    jugadores.setPortero(false);
+                }
+                if(!capitan.isChecked() && jugadores.isCapitan()){
+                    int numerocapitan = Integer.parseInt(cabecera.get(3).getText().toString());
+                    numerocapitan--;
+                    cabecera.get(3).setText(numerocapitan+"");
+                    jugadores.setCapitan(false);
+                }
+                dorsaltext.setText(jugadores.getDorsal()+"");
+
+            }
+
+            else{
+                Toast.makeText(getActivity(), "El dorsal "+dorsal.getText()+" ya está asignado",Toast.LENGTH_SHORT).show();
+            }
+
+
+        }else{
+            Toast.makeText(getActivity(),"Falta por poner el dorsal del jugador/a",Toast.LENGTH_LONG).show();
+        }
+
     }
 
     void asignarID(View view){

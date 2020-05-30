@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "959708634833",
+    "firebase_url": "https://futapp-daaa7.firebaseio.com",
+    "project_id": "futapp-daaa7",
+    "storage_bucket": "futapp-daaa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959708634833:android:bf25b93b44d8590dd76ff0",
+        "android_client_info": {
+          "package_name": "com.example.futapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959708634833-tba2secnc21pme7s4dn9l5uk0vvlhigg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwoM-Df-r8Fz4Fvil3ETN4-rivu4-0_NQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959708634833-tba2secnc21pme7s4dn9l5uk0vvlhigg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

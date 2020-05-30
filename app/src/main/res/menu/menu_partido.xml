@@ -12,12 +12,12 @@
             android:icon="@drawable/log_logout_door"
             android:title="Cerrar Sesión"
             />
+
     </group>
 
-    <item android:title="Opciones Partido">
-        <menu>
-            <item android:title="Generar Acta" android:id="@+id/generarpdf"/>
-            <item android:title="Cerrar Partido" android:id="@+id/cerrarpartido"/>
-        </menu>
-    </item>
+    <group  android:checkableBehavior="single" android:menuCategory="secondary">
+        <item android:title="Generar Acta"  android:icon="@drawable/documento" android:id="@+id/generarpdf"/>
+        <item android:title="Cerrar Partido"  android:icon="@drawable/cerrarpartido" android:id="@+id/cerrarpartido"/>
+    </group>
+
 </menu>

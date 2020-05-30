@@ -3,6 +3,7 @@ package com.example.futapp;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.futapp.ClasesPojos.Arbitros;
 import com.example.futapp.ClasesPojos.Partidos;
 import com.example.futapp.Servicios.BlobStorage;
+import com.example.futapp.Servicios.FireBaseServicio;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.example.futapp.VistasFragments.DatosBasicosFragment;
 import com.example.futapp.VistasFragments.DialogoEventoFragment;
@@ -23,10 +25,17 @@ import com.example.futapp.VistasFragments.JugadoresLocalesVisitantesFragment;
 import com.example.futapp.VistasFragments.LoginFragment;
 import com.example.futapp.VistasFragments.ResultadoPartidoFragment;
 import com.example.futapp.VistasFragments.StaffsLocalesVisitantesFragment;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -60,59 +69,59 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
 
     public static String obtenerNombreArchivo(){
 
-
         if(encabezado!=null){
 
-
             String[] items = encabezado.split("\n");
+            String file = items[0]+".txt";
+
             return  items[0]+".txt";
+
 
         }
         return null;
     }
 
-    public static void generaArchivo(Context context, Partidos partidos){
-        File file = new File(context.getFilesDir(),obtenerNombreArchivo());
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        FileOutputStream FO ;
+
+
+
+    public static int generaArchivo(Context context, Partidos partidos){
+
+        FileOutputStream FO;
         try {
             //Se comprueba que haya recibido informacion para generar el archivo
-            if(encabezado!=null){
+            if(comprobarDatosRequeridos()){
+                //Cabecera
                 String ruta = obtenerNombreArchivo();
                 FO = context.openFileOutput(ruta,Context.MODE_PRIVATE);
                 FO.write(encabezado.getBytes());
-                if(resultado !=null){
-                    String result;
-                    if(suspension!=null){
-                        result = "Resultado: "+resultado+'\n'+"Suspendido por: "+suspension+'\n';
-                    }
-                    else{
-                        result ="Resultado: "+resultado+'\n';
-                    }
 
-                    FO.write(result.getBytes());
+
+                //Body
+                String result;
+                if(suspension!=null){
+                    result = "Resultado: "+resultado+'\n'+"Suspendido por: "+suspension+'\n';
                 }
-                if(asistenciajugadores!=null){
-                    String asistencia = obtnerAsistenciaJugadores();
-                    FO.write(asistencia.getBytes());
+                else{
+                    result ="Resultado: "+resultado+'\n';
                 }
+                FO.write(result.getBytes());
+
+
+                FO.write(asistenciajugadores.getBytes());
                 if(asistenciastaff!=null){
                     FO.write(obtenerAsistenciaStaffs().getBytes());
                 }
-                if(golesmarcados.size()>0){
-                    String res = "Goles Marcados:\n";
-                    FO.write(res.getBytes());
-                    for(String x: golesmarcados){
-                        FO.write(x.getBytes());
-                    }
-                }if(faltascometidas.size()>0)
+                String res = "Goles Marcados:\n";
+                FO.write(res.getBytes());
+                for(String x: golesmarcados){
+                    FO.write(x.getBytes());
+                }
+
+
+                if(faltascometidas.size()>0)
                 {
-                    String res ="Sanciones/Lesiones:\n";
-                    FO.write(res.getBytes());
+                    String resfa ="Sanciones/Lesiones:\n";
+                    FO.write(resfa.getBytes());
                     for(String x:faltascometidas){
                         FO.write(x.getBytes());
                     }
@@ -122,24 +131,31 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
                     FO.write(incidencias.getBytes());
                 }
                 FO.close();
-                partidos.setActa(obtenerNombreArchivo());
-
+                partidos.setActa(ruta);
+                return 1;
             }else{
-                Toast.makeText(context, "Falta por pasar los datos básicos del partido",Toast.LENGTH_SHORT).show();
+                return -1;
             }
+
+
         } catch (IOException e) {
-            e.printStackTrace();
+            Toast.makeText(context, e.getMessage(),Toast.LENGTH_SHORT).show();
         }
 
+        return 0;
+    }
 
+    public static boolean comprobarDatosRequeridos(){
+        return (encabezado!=null) && (resultado !=null) && (asistenciajugadores!=null)&& (golesmarcados.size()>0);
     }
 
     public static boolean cerrarPartido(Partidos partidos, Context context){
 
         if(partidos.getActa()!=null && partidos.getActa().length()>0){
             if(resultado!=null){
-                BlobStorage blobStorage = new BlobStorage();
-                partidos.setActa(blobStorage.subirArchivo(obtenerNombreArchivo(),context));
+                FireBaseServicio fireBaseServicio = new FireBaseServicio();
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                fireBaseServicio.subirArchivo(obtenerNombreArchivo(),storageReference, context, partidos);
                 partidos.setResultado(resultado);
                 partidos.setDisputado(1);
                 ServicioApiRestUtilidades servicioApiRestUtilidades = new ServicioApiRestUtilidades();
@@ -148,18 +164,15 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
                     @Override
                     public void onResponse(Call<Partidos> call, Response<Partidos> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(context, "Partido Actualizado",Toast.LENGTH_SHORT).show();
+                            return;
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Partidos> call, Throwable t) {
-                        Toast.makeText(context, t.getMessage(),Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 });
-
-
-
 
                 return true;
             }
@@ -170,46 +183,7 @@ public class MainActivity extends AppCompatActivity implements ResultadoPartidoF
         return false;
     }
 
-    public static String obtnerAsistenciaJugadores(){
-        String result ="";
-        String[] jugaodresequipos = asistenciajugadores.split(":");
-        String[] jugaodreslocales = jugaodresequipos[0].split("\n");
-        String[] jugadoresvisitantes = jugaodresequipos[1].split("\n");
 
-        result="Jugadores Locales Titulares:\n";
-        for(String x : jugaodreslocales){
-            String[] propiedadesjugadors = x.split(",");
-            if(propiedadesjugadors[2].equals("true")){
-                result+=" "+propiedadesjugadors[0]+" con el dorsal "+propiedadesjugadors[1]+'\n';
-            }
-        }
-
-        result+="Jugadores Locales Suplentes:\n";
-        for(String x : jugaodreslocales){
-            String[] propiedadesjugadors = x.split(",");
-            if(propiedadesjugadors[3].equals("true")){
-                result+=" "+propiedadesjugadors[0]+" con el dorsal "+propiedadesjugadors[1]+'\n';
-            }
-        }
-
-        result+="Jugadores Visitantes Titulares:\n";
-        for(String x : jugadoresvisitantes){
-            String[] propiedadesjugadors = x.split(",");
-            if(propiedadesjugadors[2].equals("true")){
-                result+=" "+propiedadesjugadors[0]+" con el dorsal "+propiedadesjugadors[1]+'\n';
-            }
-        }
-
-        result+="Jugadores Visitantes Suplentes:\n";
-        for(String x : jugadoresvisitantes){
-            String[] propiedadesjugadors = x.split(",");
-            if(propiedadesjugadors[3].equals("true")){
-                result+=" "+propiedadesjugadors[0]+" con el dorsal "+propiedadesjugadors[1]+'\n';
-            }
-        }
-
-        return result;
-    }
 
     public static String obtenerAsistenciaStaffs()
     {

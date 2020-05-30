@@ -40,7 +40,6 @@ import retrofit2.Response;
 public class PartidoFragment extends Fragment {
 
     DrawerLayout drawerLayout;
-    ActionBar actionBar;
     TabLayout tabLayout;
     Partidos partidoactual;
     Toolbar toolbar;
@@ -61,10 +60,6 @@ public class PartidoFragment extends Fragment {
         toolbar = view.findViewById(R.id.toolbar_partido);
         ponerNombrerToolbar();
         drawerLayout = view.findViewById(R.id.drawer_layout_partido);
-        getActivity().setActionBar(toolbar);
-        //actionBar = getActivity().getActionBar();
-       // actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
-        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = view.findViewById(R.id.navView_partido);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -87,7 +82,18 @@ public class PartidoFragment extends Fragment {
                             break;
 
                         case R.id.generarpdf:
-                            MainActivity.generaArchivo(getActivity(), partidoactual);
+                            int respuesta = MainActivity.generaArchivo(getActivity(), partidoactual);
+                            switch (respuesta){
+                                case 0:
+                                    Toast.makeText(getActivity(), "Algo ha fallado",Toast.LENGTH_SHORT).show();
+                                    break;
+                                case -1:
+                                    Toast.makeText(getActivity(), "Faltán datos necesarios para generar el acta",Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 1:
+                                    Toast.makeText(getActivity(), "Acta generada correctamente",Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
                             break;
                         case R.id.cerrarpartido:
                             if(MainActivity.cerrarPartido(partidoactual,getActivity())){
@@ -96,11 +102,12 @@ public class PartidoFragment extends Fragment {
                                 FT.replace(R.id.principal, inicioFragment);
                                 FT.commit();
                             }else{
-                                Toast.makeText(getActivity(),"Faltan datos para cerrar el partido",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(),"No se ha generado él acta para poder cerrar el partido",Toast.LENGTH_SHORT).show();
                             }
-
+                            break;
                         default:
                             throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
+
                     }
                 }catch (Exception ex){
                     Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_SHORT).show();
