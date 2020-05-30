@@ -27,6 +27,7 @@ import com.example.futapp.ClasesPojos.Staffs;
 import com.example.futapp.R;
 import com.example.futapp.Servicios.ServicioApiRestUtilidades;
 import com.example.futapp.Servicios.OnAsisteStaffClickListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +41,9 @@ public class StaffsLocalesVisitantesFragment extends Fragment {
     List<Staffs> staffsList, staffsListvisitantes;
     Partidos partidos;
     AdaptadorStaff adaptadorStaff, adaptadorStaffvisitante;
-    int posicion, posicionvisitante;
     TextView nombrelocal, nombrevisitante;
     ImageView local, visitante;
-    Button enviar;
+    FloatingActionButton enviar;
     EnviarAsistenciaStaff enviarAsistenciaStaff;
 
 
@@ -68,23 +68,13 @@ public class StaffsLocalesVisitantesFragment extends Fragment {
         recyclerViewvisitante.setAdapter(adaptadorStaffvisitante);
         obtenerStaffs();
         asignarValores();
-        adaptadorStaff.onClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                posicion = recyclerView.getChildAdapterPosition(v);
-            }
-        });
-        adaptadorStaffvisitante.onClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                posicionvisitante = recyclerViewvisitante.getChildAdapterPosition(v);
-            }
-        });
+
+
         adaptadorStaff.setClickSwitchlistener(new OnAsisteStaffClickListener() {
             @Override
-            public void onAsisteClick(Staffs staffs) {
+            public void onAsisteClick(int j,Staffs staffs) {
 
-                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicion);
+                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(j);
                 Switch switc = holder.itemView.findViewById(R.id.staffswitc);
                 CardView cardView = holder.itemView.findViewById(R.id.cardviewstaff);
                 if(switc.isChecked()){
@@ -98,8 +88,8 @@ public class StaffsLocalesVisitantesFragment extends Fragment {
         });
         adaptadorStaffvisitante.setClickSwitchlistener(new OnAsisteStaffClickListener() {
             @Override
-            public void onAsisteClick(Staffs staffs) {
-                RecyclerView.ViewHolder holder = recyclerViewvisitante.findViewHolderForAdapterPosition(posicionvisitante);
+            public void onAsisteClick(int p,Staffs staffs) {
+                RecyclerView.ViewHolder holder = recyclerViewvisitante.findViewHolderForAdapterPosition(p);
                 Switch switc = holder.itemView.findViewById(R.id.staffswitc);
                 CardView cardView = holder.itemView.findViewById(R.id.cardviewstaff);
                 if(switc.isChecked()){

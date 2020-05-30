@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="STAFFS"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="#FFF"
-        android:background="#369F01"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -165,20 +156,20 @@
                 />
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:id="@+id/recyclerstaffvisitantes"/>
 
 
-            <Button
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/enviarasisatenciastaff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:id="@+id/enviarasisatenciastaff"
-                android:layout_marginBottom="20dp"
-                android:background="#369F01"
-                android:text="Enviar Alineaciones"
-                android:textColor="#ffff"/>
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_done_black_24dp" />
+
         </LinearLayout>
 
 
@@ -186,8 +177,17 @@
 
     </ScrollView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STAFFS"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="14dp"
+        android:textColor="#FFF"
+        android:background="#369F01"/>
 
 
 
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -49,7 +49,6 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
     ImageView local, visitante;
     FloatingActionButton enviar;
 
-    int posicionRecyclerlocal, posicionrecyclervisitante;
     View view;
 
     EnviarAlineaciones enviarAlineaciones;
@@ -81,9 +80,9 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         ponernombreyFoto();
         clicksItemsRecycler();
         recyclerViewvisitantes.setHasFixedSize(true);
-        recyclerViewvisitantes.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
+        recyclerViewvisitantes.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,26 +99,20 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
 
     void clicksItemsRecycler(){
 
-        adaptadorJugadores.onClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                posicionRecyclerlocal = recyclerView.getChildAdapterPosition(v);
-            }
-        });
 
         adaptadorJugadores.setClickeventoDialogo(new OnDialogoEventoClickListener() {
             @Override
-            public void onEventoClick(Jugadores jugadores) {
-                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicionRecyclerlocal);
+            public void onEventoClick(int l,Jugadores jugadores) {
+                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(l);
                 DialogFragment dialogFragment = new DialogoEventoFragment(jugadores, holder);
                 dialogFragment.show(getFragmentManager(),"evento");
             }
         });
         adaptadorJugadores.setClickfuncionDialogo(new OnDialogoFuncionClickListener() {
             @Override
-            public void onFuncionClick(int posicion, Jugadores jugadores) {
+            public void onFuncionClick(int n,Jugadores jugadores) {
 
-                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(posicionRecyclerlocal);
+                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(n);
 
                 DialogFragment dialogFragment = new DialogoFuncionFragment(jugadores, pasarArraylistCabeceraLocales(), holder);
 
@@ -128,8 +121,10 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         });
         adaptadorJugadores.setClickgolDialogo(new OnDialogoGolClickListener() {
             @Override
-            public void onGolClick(Jugadores jugadores) {
-                DialogFragment dialogFragment = new DialogoGolFragment(jugadores);
+            public void onGolClick(int j ,Jugadores jugadores) {
+
+                RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(j);
+                DialogFragment dialogFragment = new DialogoGolFragment(jugadores,holder);
                 dialogFragment.show(getFragmentManager(),"gol");
             }
         });
@@ -138,24 +133,19 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         //Visitantes
 
 
-        adaptadorjugadoresvisitantes.onClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                posicionrecyclervisitante = recyclerViewvisitantes.getChildAdapterPosition(v);
-            }
-        });
+
         adaptadorjugadoresvisitantes.setClickeventoDialogo(new OnDialogoEventoClickListener() {
             @Override
-            public void onEventoClick(Jugadores jugadores) {
-                RecyclerView.ViewHolder holder = recyclerViewvisitantes.findViewHolderForAdapterPosition(posicionrecyclervisitante);
+            public void onEventoClick(int p,Jugadores jugadores) {
+                RecyclerView.ViewHolder holder = recyclerViewvisitantes.findViewHolderForAdapterPosition(p);
                 DialogFragment dialogFragment = new DialogoEventoFragment(jugadores, holder);
                 dialogFragment.show(getFragmentManager(),"eventovisitante");
             }
         });
         adaptadorjugadoresvisitantes.setClickfuncionDialogo(new OnDialogoFuncionClickListener() {
             @Override
-            public void onFuncionClick(int posicion, Jugadores jugadores) {
-                RecyclerView.ViewHolder holder = recyclerViewvisitantes.findViewHolderForAdapterPosition(posicionrecyclervisitante);
+            public void onFuncionClick(int n,Jugadores jugadores) {
+                RecyclerView.ViewHolder holder = recyclerViewvisitantes.findViewHolderForAdapterPosition(n);
 
                 DialogFragment dialogFragment = new DialogoFuncionFragment(jugadores, pasarArraylistCabeceraVisitantes(), holder);
 
@@ -164,8 +154,10 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
         });
         adaptadorjugadoresvisitantes.setClickgolDialogo(new OnDialogoGolClickListener() {
             @Override
-            public void onGolClick(Jugadores jugadores) {
-                DialogFragment dialogFragment = new DialogoGolFragment(jugadores);
+            public void onGolClick(int n,Jugadores jugadores) {
+                RecyclerView.ViewHolder holder = recyclerViewvisitantes.findViewHolderForAdapterPosition(n);
+
+                DialogFragment dialogFragment = new DialogoGolFragment(jugadores,holder);
                 dialogFragment.show(getFragmentManager(),"gol");
             }
         });
@@ -313,7 +305,7 @@ public class JugadoresLocalesVisitantesFragment extends Fragment {
             }
         }
 
-        return (contadorlocales>=4 && contadorvisitantes>=1);
+        return (contadorlocales>=3 && contadorvisitantes>=3);
 
     }
 

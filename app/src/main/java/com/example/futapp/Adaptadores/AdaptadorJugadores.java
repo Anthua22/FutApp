@@ -40,23 +40,24 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
         view.setOnClickListener(this);
         holderJugadores.setClickfuncionDialgo(new OnDialogoFuncionClickListener() {
             @Override
-            public void onFuncionClick(int posicion, Jugadores jugadores) {
-                clickfuncion.onFuncionClick(holderJugadores.getAdapterPosition(), jugadores);
+            public void onFuncionClick(int n,Jugadores jugadores) {
+                clickfuncion.onFuncionClick(n,jugadores);
             }
         });
         holderJugadores.setClickeventoDialogo(new OnDialogoEventoClickListener() {
             @Override
-            public void onEventoClick(Jugadores jugadores) {
-                listenerevento.onEventoClick(jugadores);
+            public void onEventoClick(int j,Jugadores jugadores) {
+                listenerevento.onEventoClick(j,jugadores);
+            }
+        });
+        holderJugadores.setClickgolDialogo(new OnDialogoGolClickListener() {
+            @Override
+            public void onGolClick(int k,Jugadores jugadores) {
+                listenergol.onGolClick(k,jugadores);
             }
         });
 
-        holderJugadores.setClickgolDialogo(new OnDialogoGolClickListener() {
-            @Override
-            public void onGolClick(Jugadores jugadores) {
-                listenergol.onGolClick(jugadores);
-            }
-        });
+
         return holderJugadores;
 
     }
@@ -71,9 +72,7 @@ public class AdaptadorJugadores extends RecyclerView.Adapter implements View.OnC
         return jugadores.size();
     }
 
-    public void onClickListener(View.OnClickListener listener){
-        if(listener!=null) this.listener = listener;
-    }
+
 
     @Override
     public void onClick(View v) {

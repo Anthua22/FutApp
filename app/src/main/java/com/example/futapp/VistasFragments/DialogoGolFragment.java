@@ -14,7 +14,9 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.futapp.ClasesPojos.Jugadores;
 import com.example.futapp.R;
@@ -39,14 +41,18 @@ public class DialogoGolFragment extends DialogFragment {
     ArrayList<EditText> golesedit;
     ArrayList<Switch> penaltis;
     EnviarGolesInterface enviarGolesInterface;
+    RecyclerView.ViewHolder holder;
+    CardView cardView;
+    TextView gol;
 
     public interface EnviarGolesInterface{
         void EnviarGoles(String te);
     }
 
 
-    public DialogoGolFragment(Jugadores jugadores) {
+    public DialogoGolFragment(Jugadores jugadores, RecyclerView.ViewHolder holder) {
         this.jugadores = jugadores;
+        this.holder = holder;
         golesedit = new ArrayList<>();
         penaltis = new ArrayList<>();
     }
@@ -60,13 +66,19 @@ public class DialogoGolFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialogo_gol, null);
         agregarGoles();
         asignarID(view);
-
+        recuperarElementoHolder();
         builder.setView(view).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Cuando se precione el boton aceptar del botón del dialogo se va enviar la información al activity
                 //en este caso serán los goles marcados
-                enviarGolesInterface.EnviarGoles(recogerGoles());
+                if(recogerGoles().length()>0){
+                    gol.setText(golesedit.size()+"");
+                    enviarGolesInterface.EnviarGoles(recogerGoles());
+                }else{
+                    Toast.makeText(getActivity(), "El jugador no ha anotado ningún gol",Toast.LENGTH_SHORT).show();
+                }
+
             }
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -173,8 +185,6 @@ public class DialogoGolFragment extends DialogFragment {
 
     String recogerGoles(){
         String resultado ="";
-        String minuto="";
-
 
         if(golesedit.size()>0 && penaltis.size()>0)
         {
@@ -190,6 +200,13 @@ public class DialogoGolFragment extends DialogFragment {
 
         return resultado;
     }
+
+    void recuperarElementoHolder(){
+        cardView = holder.itemView.findViewById(R.id.cadjugador);
+        gol = holder.itemView.findViewById(R.id.dialogogol);
+    }
+
+
 
     @Override
     public void onAttach(Context context) {

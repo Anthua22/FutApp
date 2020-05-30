@@ -5,23 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jugadores"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="#FFF"
-        android:background="#369F01"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -217,11 +207,9 @@
             </LinearLayout>
 
             <TableLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E2EBE5"
-                android:orientation="horizontal">
+                android:background="#E2EBE5">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -270,7 +258,8 @@
                         android:textStyle="bold" />
                 </TableRow>
 
-            </TableLayout>
+            </TableLayout
+>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerlocales"
@@ -544,6 +533,17 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:src="@drawable/ic_done_black_24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JUGADORES"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="14dp"
+        android:textColor="#FFF"
+        android:background="#369F01"/>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

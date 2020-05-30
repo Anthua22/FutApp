@@ -72,6 +72,7 @@ public class DialogoFuncionFragment extends DialogFragment {
                                  if(jugadores.isSuplente()){
                                      int numerosuplentes = Integer.parseInt(cabecera.get(1).getText().toString());
                                      numerosuplentes--;
+
                                      cabecera.get(1).setText(numerosuplentes+"");
                                      jugadores.setSuplente(false);
                                  }

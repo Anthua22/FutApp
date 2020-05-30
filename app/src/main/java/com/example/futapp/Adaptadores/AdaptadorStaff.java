@@ -40,8 +40,8 @@ public class AdaptadorStaff extends RecyclerView.Adapter implements View.OnClick
         view.setOnClickListener(this);
         holderStaffs.setOnAsisteStaffClickListener(new OnAsisteStaffClickListener() {
             @Override
-            public void onAsisteClick(Staffs staffs) {
-                onAsisteStaffClickListener.onAsisteClick(staffs);
+            public void onAsisteClick(int j,Staffs staffs) {
+                onAsisteStaffClickListener.onAsisteClick(j,staffs);
             }
         });
         return holderStaffs;

@@ -11,7 +11,7 @@
         android:text="FALTAS Y TIEMPOS MUERTOS"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="14dp"
         android:textColor="#FFF"
         android:background="#369F01"/>
 
@@ -144,6 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 android:background="#006BA7"
                 android:gravity="center"
                 >
@@ -263,7 +264,8 @@
                 android:id="@+id/enviarfaltastm"
                 android:background="#369F01"
                 android:layout_gravity="center"
-                android:layout_marginTop="70dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
         </LinearLayout>
 
     </ScrollView>

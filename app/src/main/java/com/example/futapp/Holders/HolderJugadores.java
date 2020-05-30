@@ -26,6 +26,7 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
     OnDialogoEventoClickListener listenerevento;
     OnDialogoGolClickListener listenergol;
     Jugadores jugadores;
+    public int posicion;
 
     public HolderJugadores(@NonNull View itemView, Context context) {
         super(itemView);
@@ -36,7 +37,7 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
         categoria = itemView.findViewById(R.id.categoriajugador);
         dialogo_evento = itemView.findViewById(R.id.dialogoevento);
         dialogo_gol = itemView.findViewById(R.id.dialogogol);
-        cardView = itemView.findViewById(R.id.cardview);
+        cardView = itemView.findViewById(R.id.cadjugador);
         dialogo_evento.setOnClickListener(this);
         dialogo_gol.setOnClickListener(this);
         dialgofuncion.setOnClickListener(this);
@@ -73,13 +74,13 @@ public class HolderJugadores extends RecyclerView.ViewHolder implements View.OnC
     public void onClick(View v) {
        switch (v.getId()){
            case R.id.dialogotitular:
-            listenerfuncion.onFuncionClick(getAdapterPosition(),jugadores);
-            break;
+                listenerfuncion.onFuncionClick(getAdapterPosition(),jugadores);
+                break;
            case R.id.dialogogol:
-               listenergol.onGolClick(jugadores);
+               listenergol.onGolClick(getAdapterPosition(),jugadores);
                break;
            case R.id.dialogoevento:
-               listenerevento.onEventoClick(jugadores);
+               listenerevento.onEventoClick(getAdapterPosition(),jugadores);
                break;
        }
     }

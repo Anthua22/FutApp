@@ -16,7 +16,6 @@
 
     <item android:title="Opciones Partido">
         <menu>
-            <item android:title="Ver Informacion" android:id="@+id/infomacion"/>
             <item android:title="Generar Acta" android:id="@+id/generarpdf"/>
             <item android:title="Cerrar Partido" android:id="@+id/cerrarpartido"/>
         </menu>

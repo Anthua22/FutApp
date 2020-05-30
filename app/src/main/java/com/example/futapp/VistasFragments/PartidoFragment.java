@@ -62,9 +62,9 @@ public class PartidoFragment extends Fragment {
         ponerNombrerToolbar();
         drawerLayout = view.findViewById(R.id.drawer_layout_partido);
         getActivity().setActionBar(toolbar);
-        actionBar = getActivity().getActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar = getActivity().getActionBar();
+       // actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = view.findViewById(R.id.navView_partido);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

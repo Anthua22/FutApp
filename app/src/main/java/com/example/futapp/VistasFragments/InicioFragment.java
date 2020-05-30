@@ -53,9 +53,9 @@ public class InicioFragment extends Fragment {
         drawerLayout = view.findViewById(R.id.drawer_layout_inicio);
         getActivity().setActionBar(toolbar);
 
-        actionBar = getActivity().getActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+       // actionBar = getActivity().getActionBar();
+     //   actionBar.setHomeAsUpIndicator(R.drawable.menu_button);
+       // actionBar.setDisplayHomeAsUpEnabled(true);
 
 
 

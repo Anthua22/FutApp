@@ -50,7 +50,7 @@ public class HolderStaffs extends RecyclerView.ViewHolder implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.staffswitc:
-                onAsisteStaffClickListener.onAsisteClick(staffs);
+                onAsisteStaffClickListener.onAsisteClick(getAdapterPosition(),staffs);
         }
     }
 }
